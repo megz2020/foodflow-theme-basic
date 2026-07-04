@@ -52,9 +52,9 @@ git push -u origin 19.0
 
 | Series | Repository URL to register |
 |--------|---------------------------|
-| Odoo 17 | `ssh://git@github.com/foodflow/foodflow-theme-basic#17.0` |
-| Odoo 18 | `ssh://git@github.com/foodflow/foodflow-theme-basic#18.0` |
-| Odoo 19 | `ssh://git@github.com/foodflow/foodflow-theme-basic#19.0` |
+| Odoo 17 | `ssh://git@github.com/megz2020/foodflow-theme-basic#17.0` |
+| Odoo 18 | `ssh://git@github.com/megz2020/foodflow-theme-basic#18.0` |
+| Odoo 19 | `ssh://git@github.com/megz2020/foodflow-theme-basic#19.0` |
 
 4. Click **Validate** on each draft repository.
 5. Set module metadata on the store listing (category **Theme/Creative**, price **Free**, LGPL-3).
@@ -82,11 +82,19 @@ If the repo were private, grant GitHub user **`online-odoo`** read access on the
 - [x] Screenshots in `static/description/screenshots/`
 - [x] All external links → `https://foodflo.app` (until dedicated pages exist)
 
-## After publish
+## After publish / update store page
 
-1. Install from Apps on a test database (17 / 18 / 19).
-2. Bump manifest patch version on the matching branch for each release.
-3. Push branch → Odoo Apps re-syncs automatically.
+Odoo **does not** refresh automatically when you `git push`. You must re-sync manually:
+
+1. Sign in at [apps.odoo.com](https://apps.odoo.com) (publisher account).
+2. Open **[Submit your Apps](https://apps.odoo.com/apps/upload)** or **My Apps** / vendor dashboard.
+3. Find the registered repository (e.g. `ssh://git@github.com/megz2020/foodflow-theme-basic#17.0`).
+4. Click **Validate** (or **Update** / re-validate) on that repository row.
+5. Wait 2-10 minutes, then hard-refresh the store page (Ctrl+Shift+R).
+
+Bump `__manifest__.py` version on the branch **before** push, then validate — Odoo uses the new version to pick up changes.
+
+Check live page: `https://apps.odoo.com/apps/themes/17.0/foodflow_theme_basic`
 
 ## Do not publish from this repo
 
