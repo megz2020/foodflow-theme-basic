@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="foodflow_theme.FoodflowHomeMenu">
+        <t t-if="state.isOpen">
+            <div class="foodflow-launcher o_home_menu" t-on-keydown="onKeydown" t-ref="root">
+                <div class="foodflow-launcher__inner">
+                    <header class="foodflow-launcher__header">
+                        <div class="foodflow-launcher__brand">
+                            <img src="/foodflow_theme_basic/static/img/foodflow-logo.jpg"
+                                 alt="FoodFlow"
+                                 class="foodflow-launcher__logo"
+                                 height="44"/>
+                        </div>
+                        <div class="foodflow-launcher__search-wrap">
+                            <i class="fa fa-search foodflow-launcher__search-icon" aria-hidden="true"/>
+                            <input type="search"
+                                   class="foodflow-launcher__search"
+                                   placeholder="Search apps, menus, settings…"
+                                   t-ref="searchInput"
+                                   t-att-value="state.search"
+                                   t-on-input="onSearchInput"
+                                   autocomplete="off"
+                                   aria-label="Search apps"/>
+                        </div>
+                        <button type="button"
+                                class="foodflow-launcher__close btn btn-link"
+                                title="Close"
+                                aria-label="Close launcher"
+                                t-on-click="close">
+                            <i class="oi oi-close"/>
+                        </button>
+                    </header>
+
+                    <nav class="foodflow-launcher__filters" aria-label="App categories">
+                        <button t-foreach="categories"
+                                t-as="cat"
+                                t-key="cat.id"
+                                type="button"
+                                class="foodflow-launcher__filter"
+                                t-att-class="{ 'foodflow-launcher__filter--active': state.category === cat.id }"
+                                t-on-click="() => this.setCategory(cat.id)"
+                                t-esc="cat.label"/>
+                    </nav>
+
+                    <section class="foodflow-launcher__content">
+                        <t t-if="showFoodflowDetails">
+                            <article class="foodflow-details-card">
+                                <div class="foodflow-details-card__hero">
+                                    <img src="/foodflow_theme_basic/static/img/foodflow-logo.jpg"
+                                         alt="FoodFlow"
+                                         class="foodflow-details-card__logo"/>
+                                    <div>
+                                        <p class="foodflow-details-card__eyebrow">Restaurant platform</p>
+                                        <h2 class="foodflow-details-card__title">FoodFlow</h2>
+                                        <p class="foodflow-details-card__lead">
+                                            Online orders, QR menu, WhatsApp bot, loyalty, and kitchen sync —
+                                            built for restaurants and cafés.
+                                        </p>
+                                    </div>
+                                </div>
+                                <ul class="foodflow-details-card__features">
+                                    <li>QR menu &amp; online ordering</li>
+                                    <li>WhatsApp order bot</li>
+                                    <li>Loyalty &amp; customer profiles</li>
+                                    <li>Live kitchen &amp; POS sync <span class="foodflow-details-card__pro">Pro</span></li>
+                                    <li>Revenue dashboard <span class="foodflow-details-card__pro">Pro</span></li>
+                                </ul>
+                                <t t-if="!foodflowHasConnector">
+                                    <p class="foodflow-details-card__basic-note">
+                                        You're on <strong>Theme Basic</strong> — warm Odoo back-office branding.
+                                        Upgrade to <strong>Theme Pro</strong> for POS v2 styling and the FoodFlow Connector.
+                                    </p>
+                                </t>
+                                <div class="foodflow-details-card__actions">
+                                    <a t-att-href="foodflowSignupUrl" target="_blank" rel="noopener noreferrer"
+                                       class="btn btn-primary foodflow-details-card__btn">
+                                        Start free trial
+                                    </a>
+                                    <a t-att-href="foodflowAppUrl" target="_blank" rel="noopener noreferrer"
+                                       class="btn btn-secondary foodflow-details-card__btn">
+                                        Open FoodFlow
+                                    </a>
+                                    <t t-if="!foodflowHasConnector">
+                                        <a t-att-href="foodflowProUrl" target="_blank" rel="noopener noreferrer"
+                                           class="btn btn-link foodflow-details-card__btn">
+                                            See Theme Pro
+                                        </a>
+                                    </t>
+                                    <a t-att-href="foodflowDocsUrl" target="_blank" rel="noopener noreferrer"
+                                       class="btn btn-link foodflow-details-card__btn">
+                                        Docs
+                                    </a>
+                                </div>
+                                <p class="foodflow-details-card__footer">
+                                    <a t-att-href="foodflowWebsiteUrl" target="_blank" rel="noopener noreferrer">foodflo.app</a>
+                                    · Odoo 17 / 18 / 19
+                                </p>
+                            </article>
+                        </t>
+                        <t t-if="filteredApps.length">
+                            <h3 t-if="showFoodflowDetails" class="foodflow-details-card__modules-title">
+                                Installed modules
+                            </h3>
+                            <div class="foodflow-launcher__grid">
+                                <button t-foreach="filteredApps"
+                                        t-as="app"
+                                        t-key="app.id"
+                                        type="button"
+                                        class="o_app foodflow-launcher__app"
+                                        t-att-class="{ 'foodflow-launcher__app--foodflow': app.isFoodflowApp }"
+                                        t-att-data-category="app.category"
+                                        t-att-title="app.name"
+                                        t-on-click="() => this.selectApp(app)">
+                                    <div class="foodflow-launcher__app-card">
+                                        <t t-if="app.isFoodflowApp">
+                                            <img src="/foodflow_theme_basic/static/img/foodflow-logo.jpg"
+                                                 alt="FoodFlow"
+                                                 width="64"
+                                                 height="64"
+                                                 class="foodflow-launcher__app-icon foodflow-launcher__app-icon--logo"/>
+                                        </t>
+                                        <t t-else="">
+                                            <div class="foodflow-launcher__app-icon"
+                                                 t-attf-style="#{app.iconStyle}">
+                                                <i t-if="app.iconClass" t-att-class="app.iconClass"/>
+                                            </div>
+                                        </t>
+                                    </div>
+                                    <span class="o_caption foodflow-launcher__app-name" t-esc="app.name"/>
+                                </button>
+                            </div>
+                        </t>
+                        <t t-elif="hasApps and !showFoodflowDetails">
+                            <div class="foodflow-launcher__empty">
+                                <i class="fa fa-search fa-2x mb-3" aria-hidden="true"/>
+                                <p>No apps match your search.</p>
+                                <button type="button" class="btn btn-link" t-on-click="clearFilters">
+                                    Clear filters
+                                </button>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <div class="foodflow-launcher__empty">
+                                <p>No apps installed yet.</p>
+                            </div>
+                        </t>
+                    </section>
+
+                    <footer class="foodflow-launcher__footer foodflow-launcher__footer--desktop">
+                        <button type="button" class="foodflow-launcher__footer-brand btn btn-link p-0"
+                                title="About FoodFlow"
+                                t-on-click="openFoodflowDetails">
+                            FoodFlow
+                        </button>
+                        <span>Press <kbd>Esc</kbd> to close · <kbd>H</kbd> to open</span>
+                    </footer>
+                </div>
+            </div>
+        </t>
+    </t>
+
+    <t t-inherit="web.WebClient" t-inherit-mode="extension">
+        <xpath expr="//ActionContainer" position="before">
+            <FoodflowHomeMenu/>
+        </xpath>
+        <xpath expr="//ActionContainer" position="after">
+            <FoodflowMobileBar/>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_navbar_apps_menu')]/Dropdown" position="replace">
+            <button type="button"
+                    class="o-dropdown dropdown-toggle dropdown"
+                    data-hotkey="h"
+                    title="Home Menu"
+                    t-on-click.prevent="openFoodflowLauncher">
+                <i class="oi oi-apps"/>
+            </button>
+        </xpath>
+        <xpath expr="//a[hasclass('o_menu_toggle')]" position="attributes">
+            <attribute name="t-on-click.prevent">openFoodflowLauncher</attribute>
+        </xpath>
+    </t>
+
+    <t t-name="foodflow_theme.FoodflowMobileBar">
+        <nav t-if="visible"
+             class="foodflow-mobile-bar"
+             aria-label="FoodFlow mobile actions">
+            <button type="button"
+                    class="foodflow-mobile-bar__btn"
+                    t-att-class="{ 'foodflow-mobile-bar__btn--active': homeActive }"
+                    title="Home — app launcher"
+                    t-on-click="toggleHome">
+                <i class="oi oi-apps foodflow-mobile-bar__fa" aria-hidden="true"/>
+                <span class="foodflow-mobile-bar__label">Home</span>
+            </button>
+            <button type="button"
+                    class="foodflow-mobile-bar__btn foodflow-mobile-bar__btn--center"
+                    t-att-title="currentAppTitle"
+                    t-on-click="openCurrentAppMenus">
+                <span class="foodflow-mobile-bar__current" t-esc="currentAppLabel"/>
+                <span class="foodflow-mobile-bar__label">Menus</span>
+            </button>
+            <button type="button"
+                    class="foodflow-mobile-bar__btn"
+                    title="All apps"
+                    t-on-click="openAllApps">
+                <i class="fa fa-th foodflow-mobile-bar__fa" aria-hidden="true"/>
+                <span class="foodflow-mobile-bar__label">Apps</span>
+            </button>
+        </nav>
+    </t>
+
+    <t t-name="foodflow_theme.ResConfigEdition">
+        <Setting addLabel="false">
+            <div class="user-heading">
+                <h3 class="px-0">FoodFlow — Theme Basic</h3>
+            </div>
+            <div class="foodflow-settings-about">
+                <p class="mb-2">
+                    Warm hospitality styling for your Odoo back office. FoodFlow is also a full restaurant platform —
+                    online orders, QR menus, WhatsApp, and loyalty at
+                    <a target="_blank" rel="noopener noreferrer" t-att-href="foodflowWebsiteUrl">foodflo.app</a>.
+                </p>
+                <ul class="foodflow-settings-about__list mb-2">
+                    <li>QR menu &amp; online ordering</li>
+                    <li>WhatsApp order bot</li>
+                    <li>Loyalty &amp; customer profiles</li>
+                </ul>
+                <p class="text-muted mb-0">
+                    <small>
+                        Theme Basic · Odoo <t t-esc="serverVersion"/> ·
+                        <a target="_blank" rel="noopener noreferrer" t-att-href="foodflowProUrl">Upgrade to Pro</a>
+                        · <a target="_blank" href="http://www.gnu.org/licenses/lgpl.html">LGPL</a>
+                    </small>
+                </p>
+            </div>
+        </Setting>
+    </t>
+
+</templates>

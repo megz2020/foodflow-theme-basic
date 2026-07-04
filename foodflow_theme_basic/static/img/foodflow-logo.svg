@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" role="img" aria-label="FoodFlow">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d63a32"/>
+      <stop offset="100%" style="stop-color:#a82e28"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="56" rx="12" fill="url(#bg)"/>
+  <circle cx="28" cy="28" r="14" fill="rgba(255,255,255,0.2)"/>
+  <text x="28" y="33" text-anchor="middle" fill="#fff" font-size="18">🍽</text>
+  <text x="132" y="36" text-anchor="middle" fill="#ffffff"
+        font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-size="22" font-weight="700" letter-spacing="0.5">FoodFlow</text>
+</svg>

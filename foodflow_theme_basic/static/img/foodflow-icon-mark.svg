@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FoodFlow">
+  <defs>
+    <linearGradient id="ff-mark-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f06b63"/>
+      <stop offset="55%" style="stop-color:#d63a32"/>
+      <stop offset="100%" style="stop-color:#a82e28"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="url(#ff-mark-bg)"/>
+  <circle cx="32" cy="32" r="17" fill="rgba(255,255,255,0.16)"/>
+  <circle cx="32" cy="32" r="11" fill="none" stroke="#fff" stroke-width="2.2" opacity="0.95"/>
+  <circle cx="26" cy="29" r="2.2" fill="#fff"/>
+  <circle cx="38" cy="29" r="2.2" fill="#fff"/>
+  <path d="M24 36c2.5 4 5 6 8 6s5.5-2 8-6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

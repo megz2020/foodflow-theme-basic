@@ -1,0 +1,161 @@
+// Dashboard & products — modern hospitality back-office
+
+// ── Products list ─────────────────────────────────────────────────────
+body.o_foodflow_theme .o_list_view .o_list_table {
+    background: $ff-card;
+    border: 1px solid rgba(42, 33, 28, 0.05);
+}
+
+body.o_foodflow_theme .o_list_view .o_list_table thead th {
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $ff-text-muted;
+    border-bottom: 1px solid rgba(42, 33, 28, 0.08) !important;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+}
+
+body.o_foodflow_theme .o_list_view .o_list_table tbody td {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    vertical-align: middle;
+}
+
+body.o_foodflow_theme .o_list_view .o_list_table tbody > tr {
+    transition: background-color 0.15s ease;
+}
+
+body.o_foodflow_theme .o_list_view .o_field_image img,
+body.o_foodflow_theme .o_list_view .o_image_cell img,
+body.o_foodflow_theme .o_list_view .o_field_image .o_field_image img {
+    border-radius: $ff-radius-md !important;
+    box-shadow: $ff-shadow-soft;
+    border: 1px solid rgba(42, 33, 28, 0.06);
+    object-fit: cover;
+}
+
+body.o_foodflow_theme .o_list_view .o_data_row.o_selected_row {
+    background: rgba(214, 58, 50, 0.06) !important;
+    box-shadow: inset 3px 0 0 $ff-brand;
+}
+
+// Product form — menu-item feel
+body.o_foodflow_theme .o_form_view.o_product_form .o_form_sheet,
+body.o_foodflow_theme .o_form_view .o_form_sheet:has(.o_field_widget[name="image_1920"]) {
+    overflow: hidden;
+}
+
+body.o_foodflow_theme .o_form_view .o_field_widget[name="image_1920"] img,
+body.o_foodflow_theme .o_form_view .o_field_widget[name="image_128"] img {
+    border-radius: $ff-radius-lg !important;
+    box-shadow: $ff-shadow-card;
+    border: 1px solid rgba(42, 33, 28, 0.06);
+}
+
+body.o_foodflow_theme .o_form_view .oe_title h1,
+body.o_foodflow_theme .o_form_view .oe_title .o_field_char {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+body.o_foodflow_theme .o_form_view .oe_button_box {
+    border-radius: $ff-radius-md;
+    overflow: hidden;
+    box-shadow: $ff-shadow-soft;
+}
+
+// ── Kanban dashboards (POS, accounting, etc.) ───────────────────────
+body.o_foodflow_theme .o_kanban_view.o_kanban_dashboard .o_kanban_record {
+    border-radius: 18px !important;
+    background: linear-gradient(160deg, #fffdf9 0%, #ffffff 45%, #faf6f0 100%) !important;
+    border: 1px solid rgba(42, 33, 28, 0.06) !important;
+    box-shadow: 0 8px 24px rgba(42, 33, 28, 0.07) !important;
+    padding: 1rem 1.1rem !important;
+    min-height: 120px;
+}
+
+body.o_foodflow_theme .o_kanban_view.o_kanban_dashboard .o_kanban_record:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(214, 58, 50, 0.12) !important;
+}
+
+body.o_foodflow_theme .o_kanban_view.o_kanban_dashboard .o_kanban_record .o_kanban_card_header {
+    border-bottom: none;
+    padding-bottom: 0.35rem;
+}
+
+body.o_foodflow_theme .o_kanban_view.o_kanban_dashboard .o_kanban_record .o_kanban_card_header_title {
+    font-weight: 700;
+    color: $ff-text;
+}
+
+body.o_foodflow_theme .o_kanban_view.o_kanban_dashboard .o_kanban_record .o_primary {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: $ff-brand;
+}
+
+body.o_foodflow_theme .o_pos_kanban .o_kanban_record,
+body.o_foodflow_theme .o_kanban_view:has(.o_kanban_record) .o_kanban_record.o_kanban_record_has_image_fill {
+    border-radius: $ff-radius-lg !important;
+}
+
+// Spreadsheet / analytics dashboards
+body.o_foodflow_theme .o_spreadsheet_dashboard_action,
+body.o_foodflow_theme .o_action_manager .o_spreadsheet_dashboard {
+    background: $ff-page !important;
+}
+
+body.o_foodflow_theme .o_spreadsheet_dashboard .o-spreadsheet-topbar,
+body.o_foodflow_theme .o-spreadsheet-topbar {
+    background: $ff-elevated !important;
+    border-bottom: 1px solid rgba(42, 33, 28, 0.06) !important;
+    border-radius: $ff-radius-md $ff-radius-md 0 0;
+}
+
+body.o_foodflow_theme .o_spreadsheet_dashboard .o-spreadsheet-grid {
+    border-radius: 0 0 $ff-radius-md $ff-radius-md;
+    box-shadow: $ff-shadow-card;
+    overflow: hidden;
+}
+
+// Control panel — cleaner modern header on list/dashboard views
+body.o_foodflow_theme .o_control_panel .o_cp_top {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+}
+
+body.o_foodflow_theme .o_control_panel .o_cp_buttons .btn {
+    border-radius: $ff-radius-sm !important;
+}
+
+body.o_foodflow_theme .o_control_panel .breadcrumb {
+    font-weight: 600;
+}
+
+// Search view — pill style
+body.o_foodflow_theme .o_control_panel .o_searchview_input {
+    font-size: 0.92rem;
+}
+
+body.o_foodflow_theme .o_cp_searchview {
+    border-radius: 999px !important;
+    background: $ff-card;
+    box-shadow: $ff-shadow-soft;
+    border: 1px solid rgba(42, 33, 28, 0.08) !important;
+}
+
+// Empty states
+body.o_foodflow_theme .o_view_nocontent {
+    background: radial-gradient(circle at 50% 30%, rgba(240, 230, 216, 0.5) 0%, transparent 55%);
+}
+
+body.o_foodflow_theme .o_view_nocontent .o_nocontent_help {
+    border-radius: $ff-radius-lg;
+    background: rgba(255, 253, 249, 0.92);
+    box-shadow: $ff-shadow-soft;
+    border: 1px solid rgba(42, 33, 28, 0.05);
+    padding: 1.5rem 1.75rem;
+}

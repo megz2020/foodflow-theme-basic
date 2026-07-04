@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_foodflow_theme_basic" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.foodflow.theme.basic</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="FoodFlow Theme Basic" name="foodflow_theme_basic" groups="base.group_system"
+                     logo="/foodflow_theme_basic/static/img/foodflow-logo.jpg">
+                    <block title="Hospitality branding">
+                        <setting string="FoodFlow workspace theme"
+                                 help="Warm restaurant/café styling for navbar, apps, forms, lists, Discuss, and login. Free — backend only.">
+                            <field name="foodflow_theme_basic_enabled"/>
+                        </setting>
+                        <setting string="Style preset"
+                                 invisible="not foodflow_theme_basic_enabled"
+                                 help="Restaurant = bold service-floor red. Café = warmer terracotta and cream.">
+                            <field name="foodflow_theme_basic_preset" widget="radio"/>
+                        </setting>
+                    </block>
+                    <block title="About FoodFlow">
+                        <setting string="Restaurant platform"
+                                 help="FoodFlow powers online orders, QR menus, WhatsApp bots, loyalty, and kitchen sync. Theme Basic gives you Odoo branding; Theme Pro adds POS styling and the Connector.">
+                            <div class="foodflow-settings-platform mt-2">
+                                <ul class="mb-3 text-muted">
+                                    <li>QR menu &amp; online ordering</li>
+                                    <li>WhatsApp order bot</li>
+                                    <li>Loyalty &amp; customer profiles</li>
+                                    <li>POS sync &amp; analytics dashboard <em>(Theme Pro)</em></li>
+                                </ul>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button name="action_open_foodflow_signup" type="object"
+                                            string="Start free trial" class="btn btn-primary" icon="fa-rocket"/>
+                                    <button name="action_open_foodflow_app" type="object"
+                                            string="Open FoodFlow" class="btn btn-secondary" icon="fa-external-link"/>
+                                    <button name="action_open_foodflow_docs" type="object"
+                                            string="Documentation" class="btn btn-link" icon="fa-book"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Upgrade to Pro">
+                        <setting string="FoodFlow Theme Pro"
+                                 help="POS v2 layout, channel pills, product cards, animations, and FoodFlow Connector dashboard — included with a FoodFlow subscription.">
+                            <div class="d-flex flex-wrap gap-2 mt-2">
+                                <button name="action_open_foodflow_pro" type="object"
+                                        string="See Pro features" class="btn btn-primary" icon="fa-star"/>
+                                <button name="action_open_foodflow_signup" type="object"
+                                        string="Start FoodFlow trial" class="btn btn-secondary" icon="fa-user-plus"/>
+                            </div>
+                            <div class="mt-3">
+                                <field name="foodflow_pro_url" widget="url" readonly="1"/>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="FoodFlow platform">
+                        <setting string="FoodFlow dashboard"
+                                 help="Online orders, QR menu, WhatsApp bot, and loyalty — works with or without the Pro theme.">
+                            <div class="d-flex flex-wrap gap-2 mt-2">
+                                <button name="action_open_foodflow_app" type="object"
+                                        string="Open FoodFlow" class="btn btn-primary" icon="fa-external-link"/>
+                                <button name="action_open_foodflow_docs" type="object"
+                                        string="Docs" class="btn btn-link" icon="fa-book"/>
+                            </div>
+                            <div class="mt-3">
+                                <field name="foodflow_portal_url" widget="url" readonly="1"/>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

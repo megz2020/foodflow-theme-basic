@@ -1,0 +1,63 @@
+// Variables loaded via manifest before this file.
+// Arabic RTL — comfortable hospitality layout
+html[dir="rtl"] body.o_foodflow_theme,
+body.o_foodflow_theme.o_foodflow_rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="rtl"] body.o_foodflow_theme .o_main_navbar .o_menu_sections,
+body.o_foodflow_theme.o_foodflow_rtl .o_main_navbar .o_menu_sections {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+html[dir="rtl"] body.o_foodflow_theme .o_form_view .o_group .o_td_label,
+body.o_foodflow_theme.o_foodflow_rtl .o_form_view .o_group .o_td_label {
+    text-align: right;
+}
+
+html[dir="rtl"] body.o_foodflow_theme .o_control_panel .o_cp_searchview,
+body.o_foodflow_theme.o_foodflow_rtl .o_control_panel .o_cp_searchview {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+html[dir="rtl"] body.o_foodflow_theme .o_list_view .o_list_table,
+body.o_foodflow_theme.o_foodflow_rtl .o_list_view .o_list_table {
+    text-align: right;
+}
+
+html[dir="rtl"] body.o_foodflow_theme .foodflow-login-hero,
+body.o_foodflow_theme.o_foodflow_rtl .foodflow-login-hero,
+html[dir="rtl"] body.o_foodflow_theme .foodflow-home-brand,
+body.o_foodflow_theme.o_foodflow_rtl .foodflow-home-brand {
+    direction: rtl;
+}
+
+html[dir="rtl"] body.o_foodflow_theme .foodflow-navbar-brand,
+body.o_foodflow_theme.o_foodflow_rtl .foodflow-navbar-brand {
+    border-left: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 0;
+    padding-right: 0.75rem;
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+html[dir="rtl"] body.o_foodflow_theme .o_base_settings_view .o_setting_box,
+body.o_foodflow_theme.o_foodflow_rtl .o_base_settings_view .o_setting_box {
+    text-align: right;
+}
+
+// POS RTL
+html[dir="rtl"] body.o_foodflow_theme.o_foodflow_pos .pos-topheader,
+body.o_foodflow_theme.o_foodflow_rtl.o_foodflow_pos .pos-topheader {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] body.o_foodflow_theme.o_foodflow_pos .leftpane,
+body.o_foodflow_theme.o_foodflow_rtl.o_foodflow_pos .leftpane {
+    border-right: none;
+    border-left: 1px solid rgba(42, 33, 28, 0.08);
+}

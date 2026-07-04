@@ -1,0 +1,105 @@
+// FoodFlow brand bar — home menu, navbar, POS
+
+.foodflow-home-brand {
+    padding: 1.75rem 1rem 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.foodflow-home-brand__logo {
+    height: 56px;
+    width: auto;
+    filter: drop-shadow(0 2px 10px rgba(214, 58, 50, 0.22));
+    margin-bottom: 0.5rem;
+}
+
+.foodflow-home-brand__title {
+    color: $ff-brand;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0 0 0.35rem;
+}
+
+.foodflow-home-brand__tagline {
+    color: $ff-text-muted;
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+.foodflow-home-brand__tagline strong {
+    color: $ff-brand;
+}
+
+// Navbar compact brand
+.foodflow-navbar-brand {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 0.75rem;
+    max-width: 280px;
+    line-height: 1.15;
+}
+
+.foodflow-navbar-brand__logo {
+    height: 30px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.foodflow-navbar-brand__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.foodflow-navbar-brand__title {
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.foodflow-navbar-brand__tagline {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.68rem;
+    line-height: 1.2;
+    white-space: normal;
+}
+
+// Login title
+.foodflow-login-title {
+    color: $ff-brand;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0.25rem 0 0.35rem;
+    letter-spacing: 0.02em;
+}
+
+// POS header brand
+.foodflow-pos-brand__logo {
+    height: 32px;
+    width: auto;
+}
+
+.foodflow-pos-brand__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.foodflow-pos-brand__title {
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.foodflow-pos-brand__tagline {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.68rem;
+}
+
+body.o_foodflow_preset_cafe .foodflow-home-brand__title,
+body.o_foodflow_preset_cafe .foodflow-home-brand__tagline strong,
+body.o_foodflow_preset_cafe .foodflow-login-title {
+    color: #c75a3a;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="foodflow_login_layout" inherit_id="web.login_layout" name="FoodFlow Hospitality Login">
+        <xpath expr="//t[@t-set='body_classname']" position="replace">
+            <t t-set="body_classname" t-value="'bg-100 foodflow-login-wrap'"/>
+        </xpath>
+        <xpath expr="//div[hasclass('container')]" position="before">
+            <t t-set="ff_theme_on" t-value="request.env['ir.config_parameter'].sudo().get_param('foodflow_theme_basic.enabled') == 'True'"/>
+            <div t-if="ff_theme_on" class="foodflow-login-hero text-center">
+                <img src="/foodflow_theme_basic/static/img/foodflow-logo.jpg"
+                     alt="FoodFlow"
+                     class="foodflow-login-logo mb-2"/>
+                <p class="foodflow-login-tagline mb-0">
+                    Powered by <strong>FoodFlow</strong>
+                </p>
+                <p class="foodflow-login-sub">
+                    POS, orders &amp; kitchen — one workspace
+                </p>
+            </div>
+        </xpath>
+    </template>
+</odoo>

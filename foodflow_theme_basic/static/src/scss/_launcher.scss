@@ -1,0 +1,479 @@
+// FoodFlow Enterprise-style app launcher (Community)
+
+body.o_foodflow_launcher_open {
+    overflow: hidden;
+}
+
+.foodflow-launcher {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    background: linear-gradient(165deg, rgba(247, 243, 238, 0.97) 0%, rgba(240, 230, 216, 0.98) 45%, rgba(235, 227, 214, 0.99) 100%);
+    backdrop-filter: blur(6px);
+    animation: foodflow-launcher-in 0.28s ease-out;
+}
+
+@keyframes foodflow-launcher-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.foodflow-launcher__inner {
+    display: flex;
+    flex-direction: column;
+    width: unquote("min(1180px, 100%)");
+    max-height: 100vh;
+    padding: 1.5rem 1.75rem 1rem;
+    margin: 0 auto;
+}
+
+.foodflow-launcher__header {
+    display: grid;
+    grid-template-columns: unquote("minmax(180px, 1fr) minmax(220px, 360px) auto");
+    gap: 1rem 1.25rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.foodflow-launcher__brand {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.foodflow-launcher__logo {
+    width: auto;
+    height: 44px;
+    max-width: 200px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.foodflow-launcher__search-wrap {
+    position: relative;
+}
+
+.foodflow-launcher__search-icon {
+    position: absolute;
+    left: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $ff-text-muted;
+    pointer-events: none;
+}
+
+.foodflow-launcher__search {
+    width: 100%;
+    border: 1px solid rgba(42, 33, 28, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 253, 249, 0.92);
+    box-shadow: $ff-shadow-soft;
+    padding: 0.65rem 1rem 0.65rem 2.35rem;
+    font-size: 0.95rem;
+    color: $ff-text;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+    &:focus {
+        outline: none;
+        border-color: rgba(214, 58, 50, 0.45);
+        box-shadow: 0 0 0 3px rgba(214, 58, 50, 0.12);
+    }
+}
+
+.foodflow-launcher__close {
+    color: $ff-text-muted !important;
+    font-size: 1.35rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: $ff-radius-sm;
+
+    &:hover {
+        color: $ff-brand !important;
+        background: rgba(214, 58, 50, 0.08);
+    }
+}
+
+.foodflow-launcher__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.1rem;
+}
+
+.foodflow-launcher__filter {
+    border: 1px solid rgba(42, 33, 28, 0.1);
+    background: rgba(255, 255, 255, 0.72);
+    color: $ff-text-muted;
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+
+    &:hover {
+        border-color: rgba(214, 58, 50, 0.35);
+        color: $ff-brand;
+    }
+
+    &--active {
+        background: linear-gradient(180deg, $ff-brand-light 0%, $ff-brand 100%);
+        border-color: $ff-brand-dark;
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(214, 58, 50, 0.28);
+    }
+}
+
+.foodflow-launcher__content {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 0.25rem 0.15rem 1rem;
+}
+
+.foodflow-launcher__grid {
+    display: grid;
+    grid-template-columns: unquote("repeat(auto-fill, minmax(132px, 1fr))");
+    gap: 1.35rem 1.15rem;
+    justify-items: center;
+    padding: 0.25rem 0.35rem 1.5rem;
+}
+
+.foodflow-launcher__app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+    max-width: 148px;
+    border: none;
+    background: transparent;
+    padding: 0.2rem;
+    border-radius: $ff-radius-lg;
+    transition: transform 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+        transform: translateY(-4px);
+        outline: none;
+    }
+}
+
+.foodflow-launcher__app-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 108px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, #fffdf9 0%, #ffffff 55%, #faf6f0 100%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 10px 28px rgba(42, 33, 28, 0.1),
+        0 0 0 1px rgba(42, 33, 28, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.foodflow-launcher__app:hover .foodflow-launcher__app-card,
+.foodflow-launcher__app:focus-visible .foodflow-launcher__app-card {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.95) inset,
+        0 16px 36px rgba(214, 58, 50, 0.18),
+        0 0 0 2px rgba(214, 58, 50, 0.22);
+}
+
+.foodflow-launcher__app-icon {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 64px;
+    max-height: 64px;
+    border-radius: 16px !important;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.85rem;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    transition: transform 0.2s ease;
+}
+
+.foodflow-launcher__app-icon--logo {
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.foodflow-launcher__app--foodflow .foodflow-launcher__app-card {
+    background: linear-gradient(145deg, #fff5f4 0%, #ffffff 50%, #fdeceb 100%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.95) inset,
+        0 12px 32px rgba(214, 58, 50, 0.2),
+        0 0 0 1px rgba(214, 58, 50, 0.12);
+}
+
+.foodflow-launcher__app:hover .foodflow-launcher__app-icon,
+.foodflow-launcher__app:focus-visible .foodflow-launcher__app-icon {
+    transform: scale(1.04);
+}
+
+.foodflow-launcher__app-name {
+    color: $ff-text;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+}
+
+.foodflow-launcher__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    color: $ff-text-muted;
+    text-align: center;
+}
+
+.foodflow-launcher__footer {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    color: $ff-text-muted;
+    font-size: 0.78rem;
+    padding-top: 0.5rem;
+
+    kbd {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(42, 33, 28, 0.12);
+        border-radius: 4px;
+        padding: 0.1rem 0.35rem;
+        font-size: 0.72rem;
+    }
+}
+
+.foodflow-launcher__footer-brand {
+    color: $ff-brand;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    text-decoration: none;
+
+    &:hover {
+        color: $ff-brand-dark;
+        text-decoration: underline;
+    }
+}
+
+// FoodFlow platform details (Theme Basic)
+.foodflow-details-card {
+    background: linear-gradient(145deg, #fffdf9 0%, #ffffff 55%, #faf0ee 100%);
+    border: 1px solid rgba(214, 58, 50, 0.14);
+    border-radius: $ff-radius-lg;
+    box-shadow: $ff-shadow-card;
+    padding: 1.25rem 1.35rem;
+    margin-bottom: 1rem;
+}
+
+.foodflow-details-card__hero {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.foodflow-details-card__logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.foodflow-details-card__eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $ff-text-muted;
+    margin-bottom: 0.2rem;
+}
+
+.foodflow-details-card__title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: $ff-text;
+    margin: 0 0 0.35rem;
+    line-height: 1.2;
+}
+
+.foodflow-details-card__lead {
+    color: $ff-text-muted;
+    font-size: 0.92rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.foodflow-details-card__features {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    display: grid;
+    gap: 0.35rem;
+
+    li {
+        position: relative;
+        padding-left: 1.25rem;
+        font-size: 0.9rem;
+        color: $ff-text;
+
+        &::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: $ff-brand;
+            font-weight: 700;
+        }
+    }
+}
+
+.foodflow-details-card__pro {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $ff-brand;
+    background: rgba(214, 58, 50, 0.1);
+    border-radius: 999px;
+    padding: 0.1rem 0.4rem;
+    margin-left: 0.25rem;
+    vertical-align: middle;
+}
+
+.foodflow-details-card__basic-note {
+    font-size: 0.88rem;
+    color: $ff-text-muted;
+    background: rgba(240, 230, 216, 0.45);
+    border-radius: $ff-radius-sm;
+    padding: 0.65rem 0.75rem;
+    margin-bottom: 1rem;
+    line-height: 1.45;
+}
+
+.foodflow-details-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.foodflow-details-card__btn {
+    font-size: 0.88rem;
+}
+
+.foodflow-details-card__footer {
+    margin: 0;
+    font-size: 0.8rem;
+    color: $ff-text-muted;
+
+    a {
+        color: $ff-brand;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.foodflow-details-card__modules-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $ff-text-muted;
+    margin: 0 0 0.65rem;
+}
+
+.foodflow-navbar-brand--link {
+    cursor: pointer;
+    border-radius: $ff-radius-sm;
+    transition: background 0.15s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.08);
+    }
+}
+
+.foodflow-settings-about__list {
+    padding-left: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: $ff-text-muted;
+    font-size: 0.9rem;
+}
+
+// Café preset
+body.o_foodflow_preset_cafe .foodflow-launcher__tagline strong {
+    color: #c75a3a;
+}
+
+body.o_foodflow_preset_cafe .foodflow-launcher__filter--active {
+    background: linear-gradient(180deg, #d4734f 0%, #c75a3a 100%);
+    border-color: #9a4528;
+}
+
+// Responsive — tablet; phone layout lives in _mobile.scss
+@media (max-width: 991.98px) and (min-width: 768px) {
+    .foodflow-launcher__header {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "brand close"
+            "search search";
+    }
+
+    .foodflow-launcher__brand {
+        grid-area: brand;
+    }
+
+    .foodflow-launcher__search-wrap {
+        grid-area: search;
+    }
+
+    .foodflow-launcher__close {
+        grid-area: close;
+        justify-self: end;
+    }
+}
+
+// RTL
+html[dir="rtl"] .foodflow-launcher__search-icon,
+body.o_foodflow_rtl .foodflow-launcher__search-icon {
+    left: auto;
+    right: 0.9rem;
+}
+
+html[dir="rtl"] .foodflow-launcher__search,
+body.o_foodflow_rtl .foodflow-launcher__search {
+    padding: 0.65rem 2.35rem 0.65rem 1rem;
+}
+
+html[dir="rtl"] .foodflow-launcher__brand,
+body.o_foodflow_rtl .foodflow-launcher__brand {
+    direction: rtl;
+}

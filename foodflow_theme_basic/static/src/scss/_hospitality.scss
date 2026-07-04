@@ -1,0 +1,248 @@
+// Variables loaded via manifest before this file.
+// ── Global shell (Community + Enterprise) ─────────────────────────────
+body.o_foodflow_theme {
+    --o-brand-odoo: #{$ff-brand};
+    --o-brand-primary: #{$ff-brand};
+    --o-cc1-text: #fff;
+    --o-cc1-bg: #{$ff-brand};
+    --o-cc1-bg-hover: #{$ff-brand-dark};
+    --ff-page-bg: #{$ff-page};
+    --ff-card-bg: #{$ff-card};
+    background-color: $ff-page !important;
+    color: $ff-text;
+    font-feature-settings: "kern" 1, "liga" 1;
+}
+
+body.o_foodflow_theme.o_foodflow_preset_cafe {
+    --o-brand-odoo: #c75a3a;
+    --o-brand-primary: #c75a3a;
+    --ff-page-bg: #faf6f0;
+    background-color: #faf6f0 !important;
+
+    .o_main_navbar {
+        background: linear-gradient(135deg, #7a4a32 0%, #5c3828 100%) !important;
+    }
+}
+
+// ── Navbar (Enterprise & Community) ─────────────────────────────────
+body.o_foodflow_theme .o_main_navbar {
+    background: linear-gradient(135deg, $ff-navbar 0%, $ff-navbar-end 100%) !important;
+    border-bottom: none !important;
+    box-shadow: 0 2px 16px rgba(42, 33, 28, 0.18);
+    min-height: 46px;
+}
+
+body.o_foodflow_theme .o_main_navbar .o_menu_brand,
+body.o_foodflow_theme .o_main_navbar .o_navbar_apps_menu button,
+body.o_foodflow_theme .o_main_navbar .o_menu_sections .o_nav_entry,
+body.o_foodflow_theme .o_main_navbar .o_menu_sections .dropdown-toggle,
+body.o_foodflow_theme .o_main_navbar .dropdown-toggle,
+body.o_foodflow_theme .o_main_navbar .o_nav_entry {
+    color: #fff !important;
+    font-weight: 500;
+}
+
+body.o_foodflow_theme .o_main_navbar .o_menu_sections .o_nav_entry.active,
+body.o_foodflow_theme .o_main_navbar .o_nav_entry.active,
+body.o_foodflow_theme .o_main_navbar .dropdown-toggle.show {
+    background-color: rgba(255, 255, 255, 0.14) !important;
+    border-radius: $ff-radius-sm;
+}
+
+body.o_foodflow_theme .o_main_navbar .o_menu_systray > * {
+    border-radius: $ff-radius-sm;
+}
+
+// Odoo 18 paints each app menu pill with compiled $o-brand-odoo (purple).
+// Override so the full bar uses FoodFlow gradient consistently.
+body.o_foodflow_theme .o_main_navbar .o_menu_sections {
+    background: transparent !important;
+}
+
+body.o_foodflow_theme .o_main_navbar .o_menu_sections .o_nav_entry,
+body.o_foodflow_theme .o_main_navbar .o_menu_sections .dropdown-toggle,
+body.o_foodflow_theme .o_main_navbar .o_menu_sections .dropdown.show .dropdown-toggle {
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+body.o_foodflow_theme .o_main_navbar .o_menu_sections .o_nav_entry:hover,
+body.o_foodflow_theme .o_main_navbar .o_menu_sections .dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+}
+
+body.o_foodflow_theme .o_main_navbar .o_menu_sections .o_nav_entry.active,
+body.o_foodflow_theme .o_main_navbar .o_menu_sections .dropdown-toggle.show {
+    background: rgba(255, 255, 255, 0.18) !important;
+}
+
+// ── Enterprise home menu / apps grid ──────────────────────────────────
+body.o_foodflow_theme .o_home_menu {
+    background: linear-gradient(160deg, $ff-page 0%, $ff-accent-surface 45%, #ebe3d6 100%) !important;
+}
+
+body.o_foodflow_theme .o_home_menu .o_app {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.o_foodflow_theme .o_home_menu .o_app .o_app_icon {
+    border-radius: $ff-radius-lg !important;
+    box-shadow: $ff-shadow-soft;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+body.o_foodflow_theme .o_home_menu .o_app:hover .o_app_icon,
+body.o_foodflow_theme .o_home_menu .o_app:focus .o_app_icon {
+    box-shadow: 0 8px 24px rgba(214, 58, 50, 0.28);
+    transform: translateY(-2px);
+}
+
+body.o_foodflow_theme .o_home_menu .o_app .o_caption {
+    color: $ff-text;
+    font-weight: 500;
+}
+
+// ── Action area & content background ──────────────────────────────────
+body.o_foodflow_theme .o_action_manager,
+body.o_foodflow_theme .o_content {
+    background-color: $ff-page !important;
+}
+
+body.o_foodflow_theme .o_control_panel {
+    background-color: $ff-elevated !important;
+    border-bottom: 1px solid rgba(42, 33, 28, 0.06) !important;
+    box-shadow: $ff-shadow-soft;
+}
+
+// ── Forms — comfortable restaurant back-office ────────────────────────
+body.o_foodflow_theme .o_form_view .o_form_sheet_bg {
+    background: transparent !important;
+}
+
+body.o_foodflow_theme .o_form_view .o_form_sheet {
+    background: $ff-card !important;
+    border-radius: $ff-radius-md !important;
+    box-shadow: $ff-shadow-card !important;
+    border: 1px solid rgba(42, 33, 28, 0.05) !important;
+}
+
+body.o_foodflow_theme .o_form_view .o_group .o_td_label {
+    color: $ff-text-muted;
+}
+
+body.o_foodflow_theme .o_form_statusbar {
+    border-radius: $ff-radius-sm $ff-radius-sm 0 0;
+    overflow: hidden;
+}
+
+// ── Lists & kanban ────────────────────────────────────────────────────
+body.o_foodflow_theme .o_list_view .o_list_table {
+    border-radius: $ff-radius-md;
+    overflow: hidden;
+    box-shadow: $ff-shadow-soft;
+}
+
+body.o_foodflow_theme .o_list_view .o_list_table thead {
+    background-color: $ff-accent-surface !important;
+}
+
+body.o_foodflow_theme .o_list_view .o_list_table tbody > tr:hover {
+    background-color: rgba(240, 230, 216, 0.45) !important;
+}
+
+body.o_foodflow_theme .o_kanban_view .o_kanban_record {
+    border-radius: $ff-radius-md !important;
+    box-shadow: $ff-shadow-soft !important;
+    border: 1px solid rgba(42, 33, 28, 0.05) !important;
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+body.o_foodflow_theme .o_kanban_view .o_kanban_record:hover {
+    box-shadow: $ff-shadow-card !important;
+    transform: translateY(-1px);
+}
+
+// ── Buttons ───────────────────────────────────────────────────────────
+body.o_foodflow_theme .btn-primary,
+body.o_foodflow_theme .o_form_button_save,
+body.o_foodflow_theme .o_statusbar_status button.btn-primary,
+body.o_foodflow_theme .o_control_panel .btn-primary {
+    background: linear-gradient(180deg, $ff-brand-light 0%, $ff-brand 100%) !important;
+    border-color: $ff-brand-dark !important;
+    border-radius: $ff-radius-sm !important;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(214, 58, 50, 0.25);
+}
+
+body.o_foodflow_theme .btn-primary:hover,
+body.o_foodflow_theme .o_form_button_save:hover {
+    background: linear-gradient(180deg, $ff-brand 0%, $ff-brand-dark 100%) !important;
+    border-color: $ff-brand-dark !important;
+}
+
+body.o_foodflow_theme .btn-secondary,
+body.o_foodflow_theme .o_form_button_cancel {
+    border-radius: $ff-radius-sm !important;
+}
+
+// ── Discuss / chatter (Enterprise) ────────────────────────────────────
+body.o_foodflow_theme .o-mail-Discuss,
+body.o_foodflow_theme .o_Discuss {
+    background-color: $ff-page !important;
+}
+
+body.o_foodflow_theme .o-mail-DiscussSidebar,
+body.o_foodflow_theme .o_DiscussSidebar {
+    background-color: $ff-elevated !important;
+    border-right: 1px solid rgba(42, 33, 28, 0.06) !important;
+}
+
+body.o_foodflow_theme .o-mail-ChatWindow,
+body.o_foodflow_theme .o_Chatter {
+    border-radius: $ff-radius-md;
+}
+
+// ── Settings app (Enterprise) ─────────────────────────────────────────
+body.o_foodflow_theme .o_base_settings_view .o_settings_container {
+    background: $ff-page !important;
+}
+
+body.o_foodflow_theme .o_base_settings_view .o_setting_box {
+    border-radius: $ff-radius-md;
+    background: $ff-card;
+    box-shadow: $ff-shadow-soft;
+}
+
+// ── Search panel & filters ────────────────────────────────────────────
+body.o_foodflow_theme .o_searchview {
+    border-radius: $ff-radius-sm !important;
+    border-color: rgba(42, 33, 28, 0.12) !important;
+}
+
+body.o_foodflow_theme .o_facet_values {
+    border-radius: 999px !important;
+    background-color: rgba(214, 58, 50, 0.12) !important;
+    color: $ff-brand-dark !important;
+}
+
+// ── Stat buttons on forms ─────────────────────────────────────────────
+body.o_foodflow_theme .oe_button_box .oe_stat_button {
+    border-radius: $ff-radius-sm;
+    transition: background 0.15s ease;
+}
+
+body.o_foodflow_theme .oe_button_box .oe_stat_button:hover {
+    background-color: $ff-accent-surface !important;
+}
+
+// ── Modals & wizards ──────────────────────────────────────────────────
+body.o_foodflow_theme .modal-content {
+    border-radius: $ff-radius-md !important;
+    border: none !important;
+    box-shadow: 0 12px 40px rgba(42, 33, 28, 0.15) !important;
+}
+
+body.o_foodflow_theme .modal-header {
+    background: linear-gradient(135deg, $ff-elevated 0%, $ff-accent-surface 100%);
+    border-bottom: 1px solid rgba(42, 33, 28, 0.06);
+}

@@ -1,0 +1,99 @@
+// Variables loaded via manifest before this file.
+// Login — warm hospitality welcome
+.foodflow-login-wrap {
+    min-height: 100vh;
+    background: linear-gradient(165deg, #faf6f0 0%, #f0e6d8 40%, #ebe3d6 100%);
+}
+
+.foodflow-login-hero {
+    background: linear-gradient(135deg, rgba(255, 253, 249, 0.95) 0%, rgba(240, 230, 216, 0.6) 100%);
+    border-bottom: none;
+    box-shadow: 0 4px 24px rgba(42, 33, 28, 0.06);
+    padding: 1.5rem 1rem 1.25rem;
+}
+
+.foodflow-login-logo {
+    height: 56px;
+    width: auto;
+    max-width: unquote("min(320px, 90vw)");
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.foodflow-login-tagline {
+    color: $ff-text-muted;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+}
+
+.foodflow-login-tagline strong {
+    color: $ff-brand;
+}
+
+.foodflow-login-sub {
+    color: $ff-text-muted;
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+    opacity: 0.9;
+}
+
+body.o_foodflow_theme .oe_login_form,
+.o_login_form {
+    background: $ff-card;
+    border-radius: $ff-radius-md;
+    box-shadow: $ff-shadow-card;
+    padding: 1.5rem;
+    border: 1px solid rgba(42, 33, 28, 0.05);
+}
+
+.o_login_form .btn-primary {
+    background: linear-gradient(180deg, $ff-brand-light 0%, $ff-brand 100%) !important;
+    border-color: $ff-brand-dark !important;
+    border-radius: $ff-radius-sm !important;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+}
+
+.o_login_form input.form-control {
+    border-radius: $ff-radius-sm;
+    border-color: rgba(42, 33, 28, 0.15);
+}
+
+.o_login_form input.form-control:focus {
+    border-color: $ff-brand;
+    box-shadow: 0 0 0 3px rgba(214, 58, 50, 0.15);
+}
+
+@media (max-width: 767.98px) {
+    .foodflow-login-hero {
+        padding: 1rem 0.75rem 0.85rem;
+    }
+
+    .foodflow-login-logo {
+        height: 48px;
+    }
+
+    .foodflow-login-tagline {
+        font-size: 0.92rem;
+    }
+
+    .foodflow-login-sub {
+        font-size: 0.8rem;
+    }
+
+    .foodflow-login-wrap .container {
+        padding-top: 1rem !important;
+        padding-bottom: 1.25rem !important;
+    }
+
+    .foodflow-login-wrap .card.o_database_list {
+        max-width: calc(100% - 1.5rem) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    body.o_foodflow_theme .oe_login_form,
+    .o_login_form {
+        padding: 1.15rem;
+    }
+}

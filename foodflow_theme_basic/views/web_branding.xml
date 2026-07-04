@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="foodflow_web_layout_branding" inherit_id="web.layout" name="FoodFlow Web Branding">
+        <xpath expr="//title" position="attributes">
+            <attribute name="t-esc">title or (request.env['ir.config_parameter'].sudo().get_param('foodflow_theme_basic.enabled') == 'True' and 'FoodFlow' or 'Odoo')</attribute>
+        </xpath>
+        <xpath expr="//link[@rel='shortcut icon']" position="attributes">
+            <attribute name="t-att-href">x_icon or (request.env['ir.config_parameter'].sudo().get_param('foodflow_theme_basic.enabled') == 'True' and '/foodflow_theme_basic/static/img/foodflow-icon-mark.svg' or '/web/static/img/favicon.ico')</attribute>
+        </xpath>
+    </template>
+
+    <template id="foodflow_login_footer" inherit_id="web.login_layout" name="FoodFlow Login Footer">
+        <xpath expr="//a[contains(@href, 'odoo.com') and contains(., 'Powered')]" position="replace">
+            <t t-set="ff_theme_on" t-value="request.env['ir.config_parameter'].sudo().get_param('foodflow_theme_basic.enabled') == 'True'"/>
+            <a t-if="ff_theme_on"
+               href="https://foodflo.app"
+               target="_blank"
+               rel="noopener noreferrer">Powered by <span>FoodFlow</span></a>
+            <a t-else=""
+               href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth"
+               target="_blank">Powered by <span>Odoo</span></a>
+        </xpath>
+    </template>
+
+    <template id="foodflow_brand_promotion" inherit_id="web.brand_promotion_message" name="FoodFlow Brand Promotion">
+        <xpath expr="//t[@t-set='odoo_logo']" position="replace">
+            <t t-set="ff_theme_on" t-value="request.env['ir.config_parameter'].sudo().get_param('foodflow_theme_basic.enabled') == 'True'"/>
+            <t t-set="odoo_logo">
+                <a t-if="ff_theme_on"
+                   target="_blank"
+                   href="https://foodflo.app"
+                   class="badge text-bg-light text-decoration-none">
+                    <strong>FoodFlow</strong>
+                </a>
+                <a t-else=""
+                   target="_blank"
+                   t-attf-href="http://www.odoo.com?utm_source=db&amp;utm_medium=#{_utm_medium}"
+                   class="badge text-bg-light">
+                    <img alt="Odoo"
+                         src="/web/static/img/odoo_logo_tiny.png"
+                         width="62" height="20"
+                         style="width: auto; height: 1em; vertical-align: baseline;"/>
+                </a>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>FoodFlow for Odoo — Basic vs Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --ff-red: #d63a32;
+            --ff-red-dark: #a82e28;
+            --ff-cream: #f7f3ee;
+            --ff-warm: #f0e6d8;
+            --ff-ink: #2a211c;
+            --ff-muted: #6b5e54;
+            --ff-sage: #5a7a52;
+            --radius: 16px;
+            --shadow: 0 8px 32px rgba(42, 33, 28, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: "DM Sans", system-ui, sans-serif;
+            color: var(--ff-ink);
+            background: var(--ff-cream);
+            line-height: 1.6;
+        }
+
+        .wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 3.5rem 0 2.5rem;
+            text-align: center;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #fff;
+            border: 1px solid var(--ff-warm);
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--ff-red);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 {
+            font-family: "Fraunces", Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero h1 em { font-style: normal; color: var(--ff-red); }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--ff-muted);
+            max-width: 560px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero__cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .btn:hover { transform: translateY(-1px); }
+
+        .btn--primary {
+            background: linear-gradient(135deg, var(--ff-red), var(--ff-red-dark));
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(214, 58, 50, 0.35);
+        }
+
+        .btn--ghost {
+            background: #fff;
+            color: var(--ff-ink);
+            border: 1px solid var(--ff-warm);
+        }
+
+        /* ── Tier cards ── */
+        .tiers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .tiers { grid-template-columns: 1fr; }
+            .hero { padding: 2rem 0 1.5rem; }
+            .wrap { padding: 0 1rem 3rem; }
+            .hero__cta { flex-direction: column; align-items: stretch; }
+            .btn { justify-content: center; }
+            th, td { padding: 0.65rem 0.75rem; font-size: 0.85rem; }
+        }
+
+        .compare__scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tier {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .tier--pro { border-color: var(--ff-red); }
+
+        .tier__head {
+            padding: 1.5rem 1.5rem 1rem;
+        }
+
+        .tier__label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.35rem;
+        }
+
+        .tier--basic .tier__label { color: var(--ff-sage); }
+        .tier--pro .tier__label { color: var(--ff-red); }
+
+        .tier__name {
+            font-family: "Fraunces", Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .tier__price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier__price small {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--ff-muted);
+        }
+
+        .tier__desc {
+            color: var(--ff-muted);
+            font-size: 0.95rem;
+        }
+
+        .tier__shot {
+            background: linear-gradient(180deg, var(--ff-warm) 0%, var(--ff-cream) 100%);
+            border-top: 1px solid var(--ff-warm);
+            position: relative;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .tier__shot img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            object-position: top;
+            display: block;
+        }
+
+        .tier__shot--placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.5rem;
+            color: var(--ff-muted);
+            font-size: 0.85rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .tier__shot--placeholder svg { opacity: 0.35; }
+
+        .tier__body { padding: 1.25rem 1.5rem 1.5rem; }
+
+        .tier__body h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ff-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .tier__body ul { list-style: none; }
+
+        .tier__body li {
+            padding: 0.35rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.92rem;
+        }
+
+        .tier__body li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--ff-sage);
+            font-weight: 700;
+        }
+
+        .tier--pro .tier__body li::before { color: var(--ff-red); }
+
+        .tier__body li.muted {
+            color: var(--ff-muted);
+            text-decoration: line-through;
+            opacity: 0.65;
+        }
+
+        .tier__body li.muted::before { content: "—"; color: var(--ff-muted); }
+
+        /* ── Comparison table ── */
+        .compare {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin: 3rem 0;
+        }
+
+        .compare h2 {
+            font-family: "Fraunces", Georgia, serif;
+            padding: 1.5rem 1.5rem 0;
+            font-size: 1.35rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.85rem 1.5rem;
+            text-align: left;
+            border-top: 1px solid var(--ff-warm);
+            font-size: 0.92rem;
+        }
+
+        th { font-weight: 600; background: var(--ff-cream); }
+        th:first-child { width: 50%; }
+        td { text-align: center; }
+        td:first-child { text-align: left; font-weight: 500; }
+
+        .yes { color: var(--ff-sage); font-weight: 700; }
+        .no { color: #c4b8ae; }
+        .pro-only { color: var(--ff-red); font-weight: 600; }
+
+        /* ── Gallery ── */
+        .gallery { margin: 3rem 0; }
+
+        .gallery h2 {
+            font-family: "Fraunces", Georgia, serif;
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery > p {
+            color: var(--ff-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .gallery__item--mobile {
+            max-width: 280px;
+            justify-self: center;
+        }
+
+        .gallery__item--mobile img {
+            width: 100%;
+            height: auto;
+            max-height: 520px;
+            object-fit: contain;
+            object-position: top center;
+        }
+
+        .gallery__item--wide img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: auto;
+        }
+
+        @media (max-width: 600px) {
+            .gallery__grid { grid-template-columns: 1fr; }
+            .gallery__item--mobile { max-width: 100%; }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .gallery__grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .gallery__item {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery__item img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            object-position: top;
+            display: block;
+            vertical-align: top;
+            background: var(--ff-warm);
+        }
+
+        .gallery__shot {
+            line-height: 0;
+            background: var(--ff-warm);
+        }
+
+        .gallery__item figcaption {
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .gallery__item figcaption span {
+            display: block;
+            font-weight: 400;
+            color: var(--ff-muted);
+            font-size: 0.8rem;
+            margin-top: 0.15rem;
+        }
+
+        /* ── Footer note ── */
+        .note {
+            background: linear-gradient(135deg, #fff, var(--ff-warm));
+            border: 1px solid var(--ff-warm);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--ff-muted);
+        }
+
+        .note strong { color: var(--ff-ink); }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--ff-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header class="hero">
+            <div class="hero__badge">Odoo 17 · 18 · 19 · Community &amp; Enterprise</div>
+            <h1>FoodFlow for Odoo<br/><em>Basic</em> or <em>Pro</em>?</h1>
+            <p>
+                Start free with warm back-office branding. Unlock the full restaurant POS experience,
+                analytics dashboard, and FoodFlow sync with a subscription.
+            </p>
+            <div class="hero__cta">
+                <a class="btn btn--primary" href="https://foodflo.app">Get Basic — free</a>
+                <a class="btn btn--ghost" href="https://foodflo.app">See Pro &amp; pricing</a>
+            </div>
+        </header>
+
+        <section class="tiers">
+            <article class="tier tier--basic">
+                <div class="tier__head">
+                    <div class="tier__label">Free · LGPL-3</div>
+                    <div class="tier__name">Theme Basic</div>
+                    <div class="tier__price">$0 <small>forever</small></div>
+                    <p class="tier__desc">Back-office hospitality look. No POS changes. Perfect for trying FoodFlow branding before you subscribe.</p>
+                </div>
+                <div class="tier__shot">
+                    <img src="../screenshots/basic-backend.png" alt="FoodFlow Basic — app launcher and back office"/>
+                </div>
+                <div class="tier__body">
+                    <h3>Included</h3>
+                    <ul>
+                        <li>Navbar branding &amp; white-label</li>
+                        <li>Cream backgrounds &amp; soft cards</li>
+                        <li>App launcher (Community)</li>
+                        <li>Mobile bottom bar &amp; touch layout</li>
+                        <li>Restaurant / Café presets</li>
+                        <li>Forms, lists, kanban, Discuss</li>
+                        <li>Arabic RTL support</li>
+                        <li class="muted">POS v2 layout</li>
+                        <li class="muted">Channel pills (Dine in / Pickup)</li>
+                        <li class="muted">Product card redesign</li>
+                        <li class="muted">FoodFlow dashboard</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="tier tier--pro">
+                <div class="tier__head">
+                    <div class="tier__label">FoodFlow subscription</div>
+                    <div class="tier__name">Theme Pro + Connector</div>
+                    <div class="tier__price">Included <small>with FoodFlow plan</small></div>
+                    <p class="tier__desc">Everything in Basic, plus a modern POS floor, live sync to FoodFlow, and revenue analytics.</p>
+                </div>
+                <div class="tier__shot">
+                    <img src="../screenshots/pro-pos.png" alt="FoodFlow Pro — POS register with channel pills and product cards"/>
+                </div>
+                <div class="tier__body">
+                    <h3>Everything in Basic, plus</h3>
+                    <ul>
+                        <li>POS v2 — channels, categories, pagination</li>
+                        <li>Square product images &amp; card layout</li>
+                        <li>Dine in / Pickup / Delivery pills</li>
+                        <li>Category placeholder icons</li>
+                        <li>POS animations &amp; botanical accents</li>
+                        <li>Mobile POS layout</li>
+                        <li>FoodFlow Connector sync</li>
+                        <li>Revenue dashboard with Chart.js</li>
+                        <li>Top products &amp; channel breakdown</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <section class="compare">
+            <h2>Feature comparison</h2>
+            <div class="compare__scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Basic</th>
+                        <th>Pro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Favicon &amp; page title white-label</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                    <tr><td>Navbar &amp; user menu white-label</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                    <tr><td>Warm hospitality backend theme</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                    <tr><td>Restaurant / Café color presets</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                    <tr><td>Community app launcher</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                    <tr><td>Mobile bottom bar &amp; touch-friendly UI</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                    <tr><td>Standard Odoo POS (unchanged)</td><td class="yes">✓</td><td class="no">—</td></tr>
+                    <tr><td>POS v2 layout &amp; styling</td><td class="no">—</td><td class="pro-only">✓</td></tr>
+                    <tr><td>Channel selector (Dine in / Pickup)</td><td class="no">—</td><td class="pro-only">✓</td></tr>
+                    <tr><td>Product card images &amp; footer price</td><td class="no">—</td><td class="pro-only">✓</td></tr>
+                    <tr><td>Mobile POS layout</td><td class="no">—</td><td class="pro-only">✓</td></tr>
+                    <tr><td>FoodFlow Connector (orders sync)</td><td class="no">—</td><td class="pro-only">✓</td></tr>
+                    <tr><td>Analytics dashboard</td><td class="no">—</td><td class="pro-only">✓</td></tr>
+                    <tr><td>Requires FoodFlow subscription</td><td class="no">No</td><td class="pro-only">Yes</td></tr>
+                </tbody>
+            </table>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <h2>Screenshots</h2>
+            <p>Desktop and phone captures from Odoo 18 — Basic on port 8019, Pro on port 8018.</p>
+            <div class="gallery__grid">
+                <figure class="gallery__item gallery__item--wide">
+                    <div class="gallery__shot">
+                        <img src="../screenshots/basic-backend.png" alt="Basic back office"/>
+                    </div>
+                    <figcaption>Basic — Back office<span>Apps launcher &amp; warm surfaces</span></figcaption>
+                </figure>
+                <figure class="gallery__item gallery__item--mobile">
+                    <div class="gallery__shot">
+                        <img src="../screenshots/basic-mobile.png" alt="Basic mobile"/>
+                    </div>
+                    <figcaption>Basic — Mobile<span>Bottom bar &amp; touch-friendly launcher</span></figcaption>
+                </figure>
+                <figure class="gallery__item gallery__item--wide">
+                    <div class="gallery__shot">
+                        <img src="../screenshots/pro-pos.png" alt="Pro POS"/>
+                    </div>
+                    <figcaption>Pro — POS register<span>Channels, cards, categories</span></figcaption>
+                </figure>
+                <figure class="gallery__item gallery__item--mobile">
+                    <div class="gallery__shot">
+                        <img src="../screenshots/pro-mobile-pos.png" alt="Pro mobile POS"/>
+                    </div>
+                    <figcaption>Pro — Mobile POS<span>Full floor on phone &amp; tablet</span></figcaption>
+                </figure>
+                <figure class="gallery__item gallery__item--wide">
+                    <div class="gallery__shot">
+                        <img src="../screenshots/pro-dashboard.png" alt="Pro dashboard"/>
+                    </div>
+                    <figcaption>Pro — Dashboard<span>Revenue, channels, top products</span></figcaption>
+                </figure>
+                <figure class="gallery__item gallery__item--wide">
+                    <div class="gallery__shot">
+                        <img src="../screenshots/pro-products.png" alt="Pro product cards"/>
+                    </div>
+                    <figcaption>Pro — Product grid<span>Square images, name + price footer</span></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <div class="note">
+            <strong>Odoo 17, 18 &amp; 19 supported.</strong>
+            Use git branch <code>17.0</code>, <code>18.0</code>, or <code>19.0</code> matching your Odoo install (see <code>VERSIONING.md</code>).
+            Install only one theme module — Basic lives in <code>foodflow-theme-basic</code>;
+            Pro + Connector live in <code>foodflow-connector</code>.
+        </div>
+    </div>
+
+    <footer>
+        FoodFlow · <a href="https://foodflo.app">foodflo.app</a> · Odoo hospitality modules
+    </footer>
+</body>
+</html>
