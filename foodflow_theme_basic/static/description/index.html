@@ -8,130 +8,218 @@
 </section>
 
 <section class="oe_container">
-  <div class="oe_row oe_spaced" style="text-align:center;">
-    <h2 class="oe_slogan" style="color:#d63a32;">FoodFlow Theme Basic</h2>
-    <h3 class="oe_slogan" style="color:#555; font-weight:400; max-width:860px; margin:0 auto;">
-      Warm hospitality styling for your <strong>Odoo back office</strong> - branded login, navbar,
-      app launcher, forms, lists, and Discuss. Built for <strong>Odoo 17, 18 and 19</strong>
-      (Community and Enterprise). <strong>Free forever.</strong>
-    </h3>
-    <p style="margin-top:16px; font-size:14px; color:#6b5e54;">
-      Theme | Restaurant | Cafe | Free | LGPL-3
-    </p>
-  </div>
-</section>
+  <style>
+    .ff-wrap { max-width:1080px; margin:0 auto; padding:0 16px 32px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; color:#2a211c; line-height:1.6; }
+    .ff-hero { padding:24px 0; text-align:center; }
+    .ff-badge { display:inline-block; background:#fff; border:1px solid #f0e6d8; padding:6px 14px; border-radius:999px; font-size:13px; font-weight:600; color:#d63a32; margin-bottom:16px; }
+    .ff-hero h2 { font-size:32px; font-weight:800; margin:0 0 12px; letter-spacing:-0.5px; }
+    .ff-hero h2 span { color:#d63a32; }
+    .ff-muted { color:#6b5e54; }
+    .ff-cta { margin-top:20px; }
+    .ff-btn { display:inline-block; padding:10px 22px; border-radius:10px; font-weight:700; font-size:15px; text-decoration:none; margin:4px; }
+    .ff-btn-primary { background:linear-gradient(135deg,#d63a32,#a82e28); color:#fff; }
+    .ff-btn-ghost { background:#fff; color:#2a211c; border:1px solid #f0e6d8; }
+    .ff-tiers { display:table; width:100%; border-spacing:16px 0; margin:24px 0; }
+    .ff-tier { display:table-cell; width:50%; vertical-align:top; background:#fff; border-radius:16px; border:1px solid #f0e6d8; overflow:hidden; box-shadow:0 4px 20px rgba(42,33,28,0.08); }
+    .ff-tier-pro { border:2px solid #d63a32; }
+    .ff-tier-head { padding:20px 20px 12px; }
+    .ff-tier-label { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+    .ff-tier-label-basic { color:#5a7a52; }
+    .ff-tier-label-pro { color:#d63a32; }
+    .ff-tier-name { font-size:22px; font-weight:800; margin:4px 0; }
+    .ff-tier-price { font-size:24px; font-weight:800; }
+    .ff-tier-price small { font-size:14px; font-weight:500; color:#6b5e54; }
+    .ff-tier-shot { background:#f7f3ee; border-top:1px solid #f0e6d8; line-height:0; }
+    .ff-tier-shot img { width:100%; height:auto; display:block; }
+    .ff-tier-body { padding:16px 20px 20px; }
+    .ff-tier-body h4 { font-size:12px; text-transform:uppercase; letter-spacing:1px; color:#6b5e54; margin-bottom:10px; }
+    .ff-tier-body ul { list-style:none; padding:0; margin:0; }
+    .ff-tier-body li { padding:4px 0 4px 20px; position:relative; font-size:14px; }
+    .ff-tier-body li:before { content:"+"; position:absolute; left:0; color:#5a7a52; font-weight:700; }
+    .ff-tier-pro .ff-tier-body li:before { color:#d63a32; }
+    .ff-tier-body li.ff-no { color:#6b5e54; text-decoration:line-through; opacity:0.65; }
+    .ff-tier-body li.ff-no:before { content:"-"; color:#6b5e54; }
+    .ff-compare { background:#fff; border-radius:16px; border:1px solid #f0e6d8; margin:32px 0; overflow:hidden; }
+    .ff-compare h3 { padding:20px 20px 0; font-size:22px; font-weight:800; margin:0; }
+    .ff-compare table { width:100%; border-collapse:collapse; margin-top:12px; font-size:14px; }
+    .ff-compare th, .ff-compare td { padding:10px 16px; border-top:1px solid #f0e6d8; text-align:center; }
+    .ff-compare th { background:#f7f3ee; font-weight:600; }
+    .ff-compare td:first-child, .ff-compare th:first-child { text-align:left; }
+    .ff-yes { color:#5a7a52; font-weight:700; }
+    .ff-pro { color:#d63a32; font-weight:700; }
+    .ff-gallery { margin:32px 0; }
+    .ff-gallery h3 { font-size:22px; font-weight:800; margin-bottom:8px; }
+    .ff-gallery-grid { width:100%; }
+    .ff-gallery-item { background:#fff; border-radius:12px; overflow:hidden; margin-bottom:16px; border:1px solid #f0e6d8; box-shadow:0 4px 16px rgba(42,33,28,0.06); }
+    .ff-gallery-item img { width:100%; height:auto; display:block; background:#f0e6d8; }
+    .ff-gallery-cap { padding:10px 14px; font-size:14px; font-weight:600; }
+    .ff-gallery-cap span { display:block; font-weight:400; color:#6b5e54; font-size:13px; margin-top:2px; }
+    .ff-platform { background:#f7f3ee; border-radius:16px; padding:24px 20px; margin:24px 0; border:1px solid #f0e6d8; }
+    .ff-platform h3 { color:#d63a32; font-size:18px; margin:0 0 8px; }
+    .ff-platform p { color:#6b5e54; font-size:15px; margin:0 0 16px; }
+    .ff-note { background:#fff; border:1px solid #f0e6d8; border-radius:12px; padding:16px; font-size:14px; color:#6b5e54; margin-top:24px; }
+    @media (max-width:768px) {
+      .ff-tiers { display:block; }
+      .ff-tier { display:block; width:100%; margin-bottom:16px; }
+    }
+  </style>
 
-<section class="oe_container oe_dark">
-  <div class="oe_row oe_spaced" style="text-align:center;">
-    <div class="oe_span12">
-      <h2 class="oe_slogan">What is FoodFlow?</h2>
-      <p class="oe_mt32" style="font-size:16px; color:#555; max-width:860px; margin:0 auto;">
-        <strong><a href="https://foodflo.app" style="color:#d63a32;">foodflo.app</a></strong> is the online
-        platform for restaurants: QR menu, online ordering, WhatsApp bot, loyalty, and kitchen sync.
-        <strong>Theme Basic</strong> gives your Odoo back office the FoodFlow look and links your team
-        to the platform. Full POS styling and live sync need Theme Pro (subscription).
+  <div class="ff-wrap">
+
+    <div class="ff-hero">
+      <div class="ff-badge">Odoo 17 | 18 | 19 | Community and Enterprise</div>
+      <h2>FoodFlow for Odoo<br/><span>Basic</span> or <span>Pro</span>?</h2>
+      <p class="ff-muted" style="font-size:17px; max-width:640px; margin:0 auto;">
+        Start free with warm back-office branding. Unlock the full restaurant POS experience,
+        analytics dashboard, and FoodFlow sync with a subscription.
       </p>
+      <div class="ff-cta">
+        <a class="ff-btn ff-btn-primary" href="https://foodflo.app">Get Basic - free</a>
+        <a class="ff-btn ff-btn-ghost" href="https://foodflo.app">See Pro at foodflo.app</a>
+      </div>
     </div>
-  </div>
-  <div class="oe_row oe_spaced">
-    <div class="oe_span6">
-      <h3 style="color:#d63a32;">QR menu and online ordering</h3>
-      <p>Digital menu, delivery and pickup under your brand - not a marketplace.</p>
-      <h3 style="color:#d63a32;">WhatsApp order bot</h3>
-      <p>Customers order by chat; orders can flow into Odoo with the Pro connector.</p>
-      <h3 style="color:#d63a32;">Loyalty and customer profiles</h3>
-      <p>Repeat guests, tiers, and phone-based identity across channels.</p>
-    </div>
-    <div class="oe_span6">
-      <h3 style="color:#d63a32;">Kitchen and operations</h3>
-      <p>Kitchen display, reservations, and waiter tools on the FoodFlow platform.</p>
-      <h3 style="color:#d63a32;">In Odoo with Theme Basic (this module)</h3>
-      <p>FoodFlow branding, app launcher, mobile bottom bar, Arabic RTL, Restaurant / Cafe presets.</p>
-      <h3 style="color:#d63a32;">With Theme Pro (subscription)</h3>
-      <p>POS v2 layout, product cards, channel pills, connector sync, revenue dashboard.</p>
-    </div>
-  </div>
-  <div class="oe_row oe_spaced" style="text-align:center;">
-    <div class="oe_span12 oe_mt32">
-      <a href="https://foodflo.app" style="display:inline-block; background:#d63a32; color:#fff;
-         font-size:18px; font-weight:700; padding:14px 36px; border-radius:10px; text-decoration:none;">
-        Learn more at foodflo.app
-      </a>
-    </div>
-  </div>
-</section>
 
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <div class="oe_span12" style="text-align:center;">
-      <h2 class="oe_slogan">Screenshots</h2>
-    </div>
-  </div>
-  <div class="oe_row oe_spaced">
-    <div class="oe_span12" style="text-align:center;">
-      <img src="screenshots/backend.png"
-           alt="FoodFlow Theme Basic - app launcher and back office"
-           style="max-width:100%; border-radius:10px; border:1px solid #f0e6d8; box-shadow:0 6px 24px rgba(0,0,0,.10);"/>
-      <p style="font-size:14px; color:#6b5e54; margin-top:10px;">Desktop - warm app launcher and hospitality surfaces</p>
-    </div>
-  </div>
-  <div class="oe_row oe_spaced">
-    <div class="oe_span12" style="text-align:center;">
-      <img src="screenshots/mobile.png"
-           alt="FoodFlow Theme Basic - mobile launcher with bottom bar"
-           style="max-width:320px; width:100%; border-radius:10px; border:1px solid #f0e6d8; box-shadow:0 6px 24px rgba(0,0,0,.10);"/>
-      <p style="font-size:14px; color:#6b5e54; margin-top:10px;">Mobile - touch-friendly launcher and bottom navigation</p>
-    </div>
-  </div>
-</section>
-
-<section class="oe_container oe_dark">
-  <div class="oe_row oe_spaced" style="text-align:center;">
-    <div class="oe_span12">
-      <h2 class="oe_slogan">Included in Theme Basic (free)</h2>
-      <p style="font-size:16px; color:#555; max-width:820px; margin:12px auto 0;">
-        Back office hospitality only - your POS stays standard Odoo until you upgrade to Pro.
+    <div class="ff-platform">
+      <h3>What is FoodFlow?</h3>
+      <p>
+        <a href="https://foodflo.app" style="color:#d63a32; font-weight:700;">foodflo.app</a>
+        is the online platform for restaurants: QR menu, online ordering, WhatsApp bot, loyalty,
+        kitchen display, and reservations. <strong>Theme Basic</strong> (this free module) styles your
+        Odoo back office. <strong>Theme Pro</strong> adds POS v2 and live sync (FoodFlow subscription).
       </p>
+      <div class="oe_row">
+        <div class="oe_span6">
+          <strong style="color:#d63a32;">QR menu and online ordering</strong><br/>
+          <span class="ff-muted">Your branded store - no marketplace commissions.</span>
+        </div>
+        <div class="oe_span6">
+          <strong style="color:#d63a32;">WhatsApp order bot</strong><br/>
+          <span class="ff-muted">Orders by chat; sync to Odoo with Pro connector.</span>
+        </div>
+      </div>
+      <div class="oe_row oe_mt16">
+        <div class="oe_span6">
+          <strong style="color:#d63a32;">Loyalty and customer profiles</strong><br/>
+          <span class="ff-muted">Phone-based identity and repeat guest rewards.</span>
+        </div>
+        <div class="oe_span6">
+          <strong style="color:#d63a32;">Kitchen and reservations</strong><br/>
+          <span class="ff-muted">Full front-of-house on the FoodFlow platform.</span>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="oe_row oe_spaced">
-    <div class="oe_span4">
-      <h3 style="color:#d63a32;">FoodFlow branding</h3>
-      <p>Navbar, favicon, login, user menu white-label. FoodFlow details card in the app launcher.</p>
-    </div>
-    <div class="oe_span4">
-      <h3 style="color:#d63a32;">Enterprise-style launcher</h3>
-      <p>Polished home menu on Community: categories, search, mobile bottom bar.</p>
-    </div>
-    <div class="oe_span4">
-      <h3 style="color:#d63a32;">Daily staff UX</h3>
-      <p>Cream backgrounds, soft cards, forms, lists, kanban, and Discuss for back-of-house teams.</p>
-    </div>
-  </div>
-</section>
 
-<section class="oe_container">
-  <div class="oe_row oe_spaced" style="text-align:center;">
-    <div class="oe_span12">
-      <h2 class="oe_slogan">Want POS v2 and FoodFlow sync?</h2>
-      <p style="font-size:16px; color:#555; max-width:720px; margin:0 auto 20px;">
-        Upgrade to <strong>FoodFlow Theme Pro</strong> and <strong>FoodFlow Connector</strong>
-        with a FoodFlow subscription - POS channel pills, product cards, live sync, revenue dashboard.
-      </p>
-      <a href="https://foodflo.app" style="display:inline-block; background:#d63a32; color:#fff;
-         font-size:16px; font-weight:700; padding:12px 28px; border-radius:10px; text-decoration:none;">
-        See Theme Pro at foodflo.app
-      </a>
-    </div>
-  </div>
-</section>
+    <div class="ff-tiers">
+      <div class="ff-tier">
+        <div class="ff-tier-head">
+          <div class="ff-tier-label ff-tier-label-basic">Free | LGPL-3</div>
+          <div class="ff-tier-name">Theme Basic</div>
+          <div class="ff-tier-price">$0 <small>forever</small></div>
+          <p class="ff-muted" style="font-size:14px;">Back-office hospitality look. No POS changes.</p>
+        </div>
+        <div class="ff-tier-shot">
+          <img src="screenshots/basic-backend.png" alt="FoodFlow Basic - app launcher and back office"/>
+        </div>
+        <div class="ff-tier-body">
+          <h4>Included in Basic</h4>
+          <ul>
+            <li>Navbar branding and white-label</li>
+            <li>Cream backgrounds and soft cards</li>
+            <li>App launcher on Community</li>
+            <li>Mobile bottom bar</li>
+            <li>Restaurant / Cafe presets</li>
+            <li>Forms, lists, kanban, Discuss</li>
+            <li>Arabic RTL support</li>
+            <li>FoodFlow details card in launcher</li>
+            <li class="ff-no">POS v2 layout</li>
+            <li class="ff-no">Channel pills</li>
+            <li class="ff-no">FoodFlow connector sync</li>
+          </ul>
+        </div>
+      </div>
 
-<section class="oe_container">
-  <div class="oe_row oe_spaced" style="text-align:center;">
-    <p style="font-size:14px; color:#6b5e54;">
-      <strong>FoodFlow</strong> -
-      <a href="https://foodflo.app" style="color:#d63a32;">foodflo.app</a> -
-      Odoo 17 / 18 / 19 - Community and Enterprise - LGPL-3
-    </p>
+      <div class="ff-tier ff-tier-pro">
+        <div class="ff-tier-head">
+          <div class="ff-tier-label ff-tier-label-pro">FoodFlow subscription</div>
+          <div class="ff-tier-name">Theme Pro + Connector</div>
+          <div class="ff-tier-price">Included <small>with FoodFlow plan</small></div>
+          <p class="ff-muted" style="font-size:14px;">POS v2, live sync, revenue dashboard.</p>
+        </div>
+        <div class="ff-tier-shot">
+          <img src="screenshots/pro-pos.png" alt="FoodFlow Pro - POS register"/>
+        </div>
+        <div class="ff-tier-body">
+          <h4>Everything in Basic, plus</h4>
+          <ul>
+            <li>POS v2 channels and categories</li>
+            <li>Square product images and cards</li>
+            <li>Dine in / Pickup / Delivery pills</li>
+            <li>Mobile POS layout</li>
+            <li>FoodFlow Connector sync</li>
+            <li>Revenue dashboard and charts</li>
+            <li>Top products and channel breakdown</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ff-compare">
+      <h3>Feature comparison</h3>
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Basic</th><th>Pro</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Favicon and page title white-label</td><td class="ff-yes">Yes</td><td class="ff-yes">Yes</td></tr>
+          <tr><td>Warm hospitality backend theme</td><td class="ff-yes">Yes</td><td class="ff-yes">Yes</td></tr>
+          <tr><td>Community app launcher</td><td class="ff-yes">Yes</td><td class="ff-yes">Yes</td></tr>
+          <tr><td>Mobile bottom bar</td><td class="ff-yes">Yes</td><td class="ff-yes">Yes</td></tr>
+          <tr><td>Standard Odoo POS (unchanged)</td><td class="ff-yes">Yes</td><td>-</td></tr>
+          <tr><td>POS v2 layout and styling</td><td>-</td><td class="ff-pro">Yes</td></tr>
+          <tr><td>Product card images</td><td>-</td><td class="ff-pro">Yes</td></tr>
+          <tr><td>FoodFlow Connector sync</td><td>-</td><td class="ff-pro">Yes</td></tr>
+          <tr><td>Analytics dashboard</td><td>-</td><td class="ff-pro">Yes</td></tr>
+          <tr><td>Requires FoodFlow subscription</td><td>No</td><td class="ff-pro">Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ff-gallery">
+      <h3>Screenshots</h3>
+      <p class="ff-muted">Theme Basic (free) and Theme Pro (subscription) on Odoo 18.</p>
+
+      <div class="ff-gallery-item">
+        <img src="screenshots/basic-backend.png" alt="Basic back office"/>
+        <div class="ff-gallery-cap">Basic - Back office<span>Apps launcher and warm surfaces</span></div>
+      </div>
+      <div class="ff-gallery-item">
+        <img src="screenshots/basic-mobile.png" alt="Basic mobile" style="max-width:320px; margin:0 auto;"/>
+        <div class="ff-gallery-cap">Basic - Mobile<span>Bottom bar and touch-friendly launcher</span></div>
+      </div>
+      <div class="ff-gallery-item">
+        <img src="screenshots/pro-pos.png" alt="Pro POS"/>
+        <div class="ff-gallery-cap">Pro - POS register<span>Channels, cards, categories</span></div>
+      </div>
+      <div class="ff-gallery-item">
+        <img src="screenshots/pro-mobile-pos.png" alt="Pro mobile POS" style="max-width:320px; margin:0 auto;"/>
+        <div class="ff-gallery-cap">Pro - Mobile POS<span>Full floor on phone and tablet</span></div>
+      </div>
+      <div class="ff-gallery-item">
+        <img src="screenshots/pro-dashboard.png" alt="Pro dashboard"/>
+        <div class="ff-gallery-cap">Pro - Dashboard<span>Revenue, channels, top products</span></div>
+      </div>
+      <div class="ff-gallery-item">
+        <img src="screenshots/pro-products.png" alt="Pro product cards"/>
+        <div class="ff-gallery-cap">Pro - Product grid<span>Square images, name and price footer</span></div>
+      </div>
+    </div>
+
+    <div class="ff-note">
+      <strong>Odoo 17, 18 and 19 supported.</strong>
+      Install only one theme: Basic is this free module on Odoo Apps.
+      Theme Pro and the full connector ship with a FoodFlow subscription (private repo, not on Odoo Apps).
+      <a href="https://foodflo.app" style="color:#d63a32;">foodflo.app</a>
+    </div>
+
   </div>
 </section>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "FoodFlow Theme Basic",
-    "version": "17.0.1.0.2",
+    "version": "17.0.1.0.3",
     "summary": "Free hospitality theme for Odoo - backend branding, login and app launcher",
     "description": """
 FoodFlow Theme Basic (free)
@@ -67,8 +67,10 @@ Use git branch `17.0`, `18.0`, or `19.0` matching your Odoo install.
     "images": [
         "static/description/banner.png",
         "static/description/icon.png",
-        "static/description/screenshots/backend.png",
-        "static/description/screenshots/mobile.png",
+        "static/description/screenshots/basic-backend.png",
+        "static/description/screenshots/basic-mobile.png",
+        "static/description/screenshots/pro-pos.png",
+        "static/description/screenshots/pro-dashboard.png",
     ],
     "installable": True,
     "auto_install": False,
