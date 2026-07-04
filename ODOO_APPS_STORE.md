@@ -34,8 +34,8 @@ git checkout 18.0
 ## GitHub remote (public)
 
 ```bash
-# one-time — replace ORG with your GitHub org/user
-gh repo create foodflow/foodflow-theme-basic --public --source=. --remote=origin
+# one-time — replace USER with your GitHub account (e.g. megz2020)
+gh repo create USER/foodflow-theme-basic --public --source=. --remote=origin
 
 git push -u origin 18.0
 git push -u origin 17.0
@@ -43,6 +43,8 @@ git push -u origin 19.0
 ```
 
 **Repo must be public** (no `online-odoo` collaborator needed for public repos).
+
+Example remote after create: `https://github.com/megz2020/foodflow-theme-basic`
 
 ## Register on Odoo Apps
 
@@ -52,9 +54,9 @@ git push -u origin 19.0
 
 | Series | Repository URL to register |
 |--------|---------------------------|
-| Odoo 17 | `ssh://git@github.com/foodflow/foodflow-theme-basic#17.0` |
-| Odoo 18 | `ssh://git@github.com/foodflow/foodflow-theme-basic#18.0` |
-| Odoo 19 | `ssh://git@github.com/foodflow/foodflow-theme-basic#19.0` |
+| Odoo 17 | `ssh://git@github.com/USER/foodflow-theme-basic#17.0` |
+| Odoo 18 | `ssh://git@github.com/USER/foodflow-theme-basic#18.0` |
+| Odoo 19 | `ssh://git@github.com/USER/foodflow-theme-basic#19.0` |
 
 4. Click **Validate** on each draft repository.
 5. Set module metadata on the store listing (category **Theme/Creative**, price **Free**, LGPL-3).
