@@ -1,25 +1,26 @@
 # -*- coding: utf-8 -*-
 {
     "name": "FoodFlow Theme Basic",
-    "version": "17.0.1.0.0",
-    "summary": "Free hospitality theme for Odoo — backend branding, login & app launcher",
+    "version": "17.0.1.0.1",
+    "summary": "Free hospitality theme for Odoo - backend branding, login and app launcher",
     "description": """
 FoodFlow Theme Basic (free)
 ============================
 
-Warm restaurant/café styling for the **Odoo back office** — no POS overhaul.
+Warm restaurant and cafe styling for the **Odoo back office** - no POS overhaul.
 
-* FoodFlow login & navbar branding
-* Cream backgrounds, soft cards, hospitality presets (Restaurant / Café)
+* FoodFlow login and navbar branding
+* Cream backgrounds, soft cards, hospitality presets (Restaurant / Cafe)
 * Enterprise-style app launcher on Community
-* Forms, lists, kanban, Discuss — comfortable for daily staff use
-* Arabic RTL tweaks + translations
-* Toggle in Settings → FoodFlow Theme Basic
+* Forms, lists, kanban, Discuss - comfortable for daily staff use
+* Arabic RTL tweaks and translations
+* Toggle in Settings - FoodFlow Theme Basic
+* FoodFlow platform details card (QR menu, online orders, WhatsApp, loyalty)
 
 **Does not include** POS v2 layout, channel pills, product cards, or dashboard.
 Upgrade to **FoodFlow Theme Pro** + **FoodFlow Connector** for the full experience.
 
-**Supported Odoo versions:** 17.0, 18.0, 19.0 (Community & Enterprise).
+**Supported Odoo versions:** 17.0, 18.0, 19.0 (Community and Enterprise).
 Use git branch `17.0`, `18.0`, or `19.0` matching your Odoo install.
 """,
     "category": "Theme/Creative",
