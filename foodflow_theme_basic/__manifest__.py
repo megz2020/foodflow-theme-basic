@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "FoodFlow Theme Basic",
-    "version": "18.0.1.0.3",
+    "version": "17.0.1.0.0",
     "summary": "Free hospitality theme for Odoo — backend branding, login & app launcher",
     "description": """
 FoodFlow Theme Basic (free)

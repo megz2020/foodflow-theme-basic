@@ -16,7 +16,12 @@ python3 - "$MANIFEST" "$MANIFEST_VER" <<'PY'
 import re, sys
 path, ver = sys.argv[1], sys.argv[2]
 text = open(path, encoding="utf-8").read()
-text = re.sub(r'"version":\s*"[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+"', f'"version": "{ver}"', text, count=1)
+text = re.sub(
+    r'"version":\s*"[0-9]+(?:\.[0-9]+)+"',
+    f'"version": "{ver}"',
+    text,
+    count=1,
+)
 open(path, "w", encoding="utf-8").write(text)
 print(f"  {path} → {ver}")
 PY
