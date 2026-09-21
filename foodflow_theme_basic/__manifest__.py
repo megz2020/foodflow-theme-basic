@@ -20,8 +20,8 @@ Warm restaurant and cafe styling for the **Odoo back office** - no POS overhaul.
 **Does not include** POS v2 layout, channel pills, product cards, or dashboard.
 Upgrade to **FoodFlow Theme Pro** + **FoodFlow Connector** for the full experience.
 
-**Supported Odoo versions:** 17.0, 18.0, 19.0 (Community and Enterprise).
-Use git branch `17.0`, `18.0`, or `19.0` matching your Odoo install.
+**Supported Odoo versions:** 17.0, 18.0, 19.0, 20.0 (Community and Enterprise).
+Use git branch `17.0`, `18.0`, `19.0` or `20.0` matching your Odoo install.
 """,
     "category": "Theme/Creative",
     "license": "LGPL-3",
@@ -69,6 +69,8 @@ Use git branch `17.0`, `18.0`, or `19.0` matching your Odoo install.
         "static/description/icon.png",
         "static/description/screenshots/backend.png",
         "static/description/screenshots/mobile.png",
+        "static/description/screenshots/basic-login.png",
+        "static/description/screenshots/basic-foodflow.png",
     ],
     "installable": True,
     "auto_install": False,

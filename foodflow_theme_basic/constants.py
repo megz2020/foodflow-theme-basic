@@ -33,9 +33,21 @@ PRESET_RESTAURANT = "restaurant"
 PRESET_CAFE = "cafe"
 PRESET_DEFAULT = PRESET_RESTAURANT
 
-FOODFLOW_WEBSITE_URL = "https://foodflo.app"
-FOODFLOW_APP_URL = FOODFLOW_WEBSITE_URL
-FOODFLOW_PRO_BASE_URL = FOODFLOW_WEBSITE_URL
-FOODFLOW_PRO_URL = FOODFLOW_WEBSITE_URL
-FOODFLOW_SIGNUP_URL = FOODFLOW_WEBSITE_URL
-FOODFLOW_DOCS_URL = FOODFLOW_WEBSITE_URL
+FOODFLOW_BASE_URL = "https://foodflo.app"
+
+
+def foodflow_url(path, content):
+    """foodflo.app link tagged so sign-ups from this module show up in analytics."""
+    return (
+        f"{FOODFLOW_BASE_URL}{path}?utm_source=odoo_apps&utm_medium=theme_basic"
+        f"&utm_campaign=odoo_theme&utm_content={content}"
+    )
+
+
+FOODFLOW_WEBSITE_URL = foodflow_url("/", "website")
+FOODFLOW_APP_URL = foodflow_url("/login", "open_app")
+FOODFLOW_PRO_BASE_URL = FOODFLOW_BASE_URL
+FOODFLOW_PRO_URL = foodflow_url("/", "pro") + "#pricing"
+FOODFLOW_SIGNUP_URL = foodflow_url("/signup", "signup")
+FOODFLOW_DOCS_URL = foodflow_url("/guide", "docs")
+FOODFLOW_LOGIN_PAGE_URL = foodflow_url("/", "login_page")

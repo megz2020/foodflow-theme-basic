@@ -477,3 +477,8 @@ html[dir="rtl"] .foodflow-launcher__brand,
 body.o_foodflow_rtl .foodflow-launcher__brand {
     direction: rtl;
 }
+
+.foodflow-details-card__actions .btn-link {
+    color: $ff-brand-dark;
+    font-weight: 600;
+}
