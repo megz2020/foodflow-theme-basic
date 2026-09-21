@@ -2,8 +2,8 @@
 <templates xml:space="preserve">
 
     <t t-name="foodflow_theme.FoodflowHomeMenu">
-        <t t-if="state.isOpen">
-            <div class="foodflow-launcher o_home_menu" t-on-keydown="onKeydown" t-ref="root">
+        <t t-if="this.state.isOpen">
+            <div class="foodflow-launcher o_home_menu" t-on-keydown="this.onKeydown">
                 <div class="foodflow-launcher__inner">
                     <header class="foodflow-launcher__header">
                         <div class="foodflow-launcher__brand">
@@ -13,13 +13,13 @@
                                  height="44"/>
                         </div>
                         <div class="foodflow-launcher__search-wrap">
-                            <i class="fa fa-search foodflow-launcher__search-icon" aria-hidden="true"/>
+                            <i class="oi foodflow-launcher__search-icon" data-icon="search" aria-hidden="true"/>
                             <input type="search"
                                    class="foodflow-launcher__search"
                                    placeholder="Search apps, menus, settings…"
-                                   t-ref="searchInput"
-                                   t-att-value="state.search"
-                                   t-on-input="onSearchInput"
+                                   t-ref="this.searchInput"
+                                   t-att-value="this.state.search"
+                                   t-on-input="this.onSearchInput"
                                    autocomplete="off"
                                    aria-label="Search apps"/>
                         </div>
@@ -27,24 +27,24 @@
                                 class="foodflow-launcher__close btn btn-link"
                                 title="Close"
                                 aria-label="Close launcher"
-                                t-on-click="close">
-                            <i class="oi oi-close"/>
+                                t-on-click="this.close">
+                            <i class="oi" data-icon="close"/>
                         </button>
                     </header>
 
                     <nav class="foodflow-launcher__filters" aria-label="App categories">
-                        <button t-foreach="categories"
+                        <button t-foreach="this.categories"
                                 t-as="cat"
                                 t-key="cat.id"
                                 type="button"
                                 class="foodflow-launcher__filter"
-                                t-att-class="{ 'foodflow-launcher__filter--active': state.category === cat.id }"
+                                t-att-class="{ 'foodflow-launcher__filter--active': this.state.category === cat.id }"
                                 t-on-click="() => this.setCategory(cat.id)"
-                                t-esc="cat.label"/>
+                                t-out="cat.label"/>
                     </nav>
 
                     <section class="foodflow-launcher__content">
-                        <t t-if="showFoodflowDetails">
+                        <t t-if="this.showFoodflowDetails">
                             <article class="foodflow-details-card">
                                 <div class="foodflow-details-card__hero">
                                     <img src="/foodflow_theme_basic/static/img/foodflow-logo.jpg"
@@ -66,44 +66,44 @@
                                     <li>Live kitchen &amp; POS sync <span class="foodflow-details-card__pro">Pro</span></li>
                                     <li>Revenue dashboard <span class="foodflow-details-card__pro">Pro</span></li>
                                 </ul>
-                                <t t-if="!foodflowHasConnector">
+                                <t t-if="!this.foodflowHasConnector">
                                     <p class="foodflow-details-card__basic-note">
                                         You're on <strong>Theme Basic</strong> — warm Odoo back-office branding.
                                         Upgrade to <strong>Theme Pro</strong> for POS v2 styling and the FoodFlow Connector.
                                     </p>
                                 </t>
                                 <div class="foodflow-details-card__actions">
-                                    <a t-att-href="foodflowSignupUrl" target="_blank" rel="noopener noreferrer"
+                                    <a t-att-href="this.foodflowSignupUrl" target="_blank" rel="noopener noreferrer"
                                        class="btn btn-primary foodflow-details-card__btn">
                                         Start free trial
                                     </a>
-                                    <a t-att-href="foodflowAppUrl" target="_blank" rel="noopener noreferrer"
+                                    <a t-att-href="this.foodflowAppUrl" target="_blank" rel="noopener noreferrer"
                                        class="btn btn-secondary foodflow-details-card__btn">
                                         Open FoodFlow
                                     </a>
-                                    <t t-if="!foodflowHasConnector">
-                                        <a t-att-href="foodflowProUrl" target="_blank" rel="noopener noreferrer"
+                                    <t t-if="!this.foodflowHasConnector">
+                                        <a t-att-href="this.foodflowProUrl" target="_blank" rel="noopener noreferrer"
                                            class="btn btn-link foodflow-details-card__btn">
                                             See Theme Pro
                                         </a>
                                     </t>
-                                    <a t-att-href="foodflowDocsUrl" target="_blank" rel="noopener noreferrer"
+                                    <a t-att-href="this.foodflowDocsUrl" target="_blank" rel="noopener noreferrer"
                                        class="btn btn-link foodflow-details-card__btn">
                                         Docs
                                     </a>
                                 </div>
                                 <p class="foodflow-details-card__footer">
-                                    <a t-att-href="foodflowWebsiteUrl" target="_blank" rel="noopener noreferrer">foodflo.app</a>
-                                    · Odoo 17 / 18 / 19
+                                    <a t-att-href="this.foodflowWebsiteUrl" target="_blank" rel="noopener noreferrer">foodflo.app</a>
+                                    · Odoo 20
                                 </p>
                             </article>
                         </t>
-                        <t t-if="filteredApps.length">
-                            <h3 t-if="showFoodflowDetails" class="foodflow-details-card__modules-title">
+                        <t t-if="this.filteredApps.length">
+                            <h3 t-if="this.showFoodflowDetails" class="foodflow-details-card__modules-title">
                                 Installed modules
                             </h3>
                             <div class="foodflow-launcher__grid">
-                                <button t-foreach="filteredApps"
+                                <button t-foreach="this.filteredApps"
                                         t-as="app"
                                         t-key="app.id"
                                         type="button"
@@ -127,15 +127,15 @@
                                             </div>
                                         </t>
                                     </div>
-                                    <span class="o_caption foodflow-launcher__app-name" t-esc="app.name"/>
+                                    <span class="o_caption foodflow-launcher__app-name" t-out="app.name"/>
                                 </button>
                             </div>
                         </t>
-                        <t t-elif="hasApps and !showFoodflowDetails">
+                        <t t-elif="this.hasApps and !this.showFoodflowDetails">
                             <div class="foodflow-launcher__empty">
-                                <i class="fa fa-search fa-2x mb-3" aria-hidden="true"/>
+                                <i class="oi fs-1 mb-3" data-icon="search" aria-hidden="true"/>
                                 <p>No apps match your search.</p>
-                                <button type="button" class="btn btn-link" t-on-click="clearFilters">
+                                <button type="button" class="btn btn-link" t-on-click="this.clearFilters">
                                     Clear filters
                                 </button>
                             </div>
@@ -150,7 +150,7 @@
                     <footer class="foodflow-launcher__footer foodflow-launcher__footer--desktop">
                         <button type="button" class="foodflow-launcher__footer-brand btn btn-link p-0"
                                 title="About FoodFlow"
-                                t-on-click="openFoodflowDetails">
+                                t-on-click="this.openFoodflowDetails">
                             FoodFlow
                         </button>
                         <span>Press <kbd>Esc</kbd> to close · <kbd>H</kbd> to open</span>
@@ -175,39 +175,39 @@
                     class="o-dropdown dropdown-toggle dropdown"
                     data-hotkey="h"
                     title="Home Menu"
-                    t-on-click.prevent="openFoodflowLauncher">
-                <i class="oi oi-apps"/>
+                    t-on-click.prevent="this.openFoodflowLauncher">
+                <i class="oi" data-icon="apps"/>
             </button>
         </xpath>
         <xpath expr="//a[hasclass('o_menu_toggle')]" position="attributes">
-            <attribute name="t-on-click.prevent">openFoodflowLauncher</attribute>
+            <attribute name="t-on-click.prevent">this.openFoodflowLauncher</attribute>
         </xpath>
     </t>
 
     <t t-name="foodflow_theme.FoodflowMobileBar">
-        <nav t-if="visible"
+        <nav t-if="this.visible"
              class="foodflow-mobile-bar"
              aria-label="FoodFlow mobile actions">
             <button type="button"
                     class="foodflow-mobile-bar__btn"
-                    t-att-class="{ 'foodflow-mobile-bar__btn--active': homeActive }"
+                    t-att-class="{ 'foodflow-mobile-bar__btn--active': this.homeActive }"
                     title="Home — app launcher"
-                    t-on-click="toggleHome">
-                <i class="oi oi-apps foodflow-mobile-bar__fa" aria-hidden="true"/>
+                    t-on-click="this.toggleHome">
+                <i class="oi foodflow-mobile-bar__fa" data-icon="home" aria-hidden="true"/>
                 <span class="foodflow-mobile-bar__label">Home</span>
             </button>
             <button type="button"
                     class="foodflow-mobile-bar__btn foodflow-mobile-bar__btn--center"
-                    t-att-title="currentAppTitle"
-                    t-on-click="openCurrentAppMenus">
-                <span class="foodflow-mobile-bar__current" t-esc="currentAppLabel"/>
+                    t-att-title="this.currentAppTitle"
+                    t-on-click="this.openCurrentAppMenus">
+                <span class="foodflow-mobile-bar__current" t-out="this.currentAppLabel"/>
                 <span class="foodflow-mobile-bar__label">Menus</span>
             </button>
             <button type="button"
                     class="foodflow-mobile-bar__btn"
                     title="All apps"
-                    t-on-click="openAllApps">
-                <i class="fa fa-th foodflow-mobile-bar__fa" aria-hidden="true"/>
+                    t-on-click="this.openAllApps">
+                <i class="oi foodflow-mobile-bar__fa" data-icon="apps" aria-hidden="true"/>
                 <span class="foodflow-mobile-bar__label">Apps</span>
             </button>
         </nav>
@@ -222,7 +222,7 @@
                 <p class="mb-2">
                     Warm hospitality styling for your Odoo back office. FoodFlow is also a full restaurant platform —
                     online orders, QR menus, WhatsApp, and loyalty at
-                    <a target="_blank" rel="noopener noreferrer" t-att-href="foodflowWebsiteUrl">foodflo.app</a>.
+                    <a target="_blank" rel="noopener noreferrer" t-att-href="this.foodflowWebsiteUrl">foodflo.app</a>.
                 </p>
                 <ul class="foodflow-settings-about__list mb-2">
                     <li>QR menu &amp; online ordering</li>
@@ -231,8 +231,8 @@
                 </ul>
                 <p class="text-muted mb-0">
                     <small>
-                        Theme Basic · Odoo <t t-esc="serverVersion"/> ·
-                        <a target="_blank" rel="noopener noreferrer" t-att-href="foodflowProUrl">Upgrade to Pro</a>
+                        Theme Basic · Odoo <t t-out="this.serverVersion"/> ·
+                        <a target="_blank" rel="noopener noreferrer" t-att-href="this.foodflowProUrl">Upgrade to Pro</a>
                         · <a target="_blank" href="http://www.gnu.org/licenses/lgpl.html">LGPL</a>
                     </small>
                 </p>

@@ -6,13 +6,13 @@ Free Odoo hospitality theme — **backend branding only**.
 Pro modules are **private** — see [DISTRIBUTION.md](DISTRIBUTION.md).  
 **Publishing steps:** [ODOO_APPS_STORE.md](ODOO_APPS_STORE.md)
 
-**Supported Odoo versions:** 17.0, 18.0, 19.0 (Community & Enterprise).  
-Use git branch `17.0`, `18.0`, or `19.0` matching your install — see [VERSIONING.md](VERSIONING.md).
+**Supported Odoo versions:** 17.0, 18.0, 19.0, 20.0 (Community & Enterprise).  
+Use git branch `17.0`, `18.0`, `19.0` or `20.0` matching your install — see [VERSIONING.md](VERSIONING.md).
 
 | | Basic (this repo) | Pro (`foodflow-connector`) |
 |---|---|---|
 | Price | Free · LGPL-3 | FoodFlow subscription |
-| Odoo versions | 17, 18, 19 | 17, 18, 19 |
+| Odoo versions | 17, 18, 19, 20 | 17, 18, 19 |
 | Back office theme | ✓ | ✓ |
 | POS v2 styling | — | ✓ |
 | FoodFlow Connector | — | ✓ |

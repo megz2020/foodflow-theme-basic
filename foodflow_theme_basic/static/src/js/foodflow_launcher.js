@@ -51,6 +51,14 @@ patch(NavBar.prototype, {
     },
 
     _openMobileSidebar({ allApps = false } = {}) {
+        // Enterprise renders the sidebar without the apps list; its own
+        // "All Apps" button opens the home menu instead.
+        const homeMenu = this.env.services.home_menu;
+        if (allApps && homeMenu) {
+            this.state.isAppMenuSidebarOpened = false;
+            homeMenu.toggle(true);
+            return;
+        }
         this.state.isAllAppsMenuOpened = allApps;
         this.state.isAppMenuSidebarOpened = true;
     },

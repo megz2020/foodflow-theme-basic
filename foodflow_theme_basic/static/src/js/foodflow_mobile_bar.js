@@ -1,12 +1,11 @@
 /** @odoo-module **/
 
-import { Component, onMounted, onWillUnmount, useEffect, useState } from "@odoo/owl";
+import { Component, onMounted, onWillUnmount, proxy, useEffect } from "@odoo/owl";
 import { useBus, useService } from "@web/core/utils/hooks";
 import { session } from "@web/session";
 
 export class FoodflowMobileBar extends Component {
     static template = "foodflow_theme.FoodflowMobileBar";
-    static props = {};
 
     setup() {
         if (!session.foodflow_theme_enabled) {
@@ -14,8 +13,8 @@ export class FoodflowMobileBar extends Component {
         }
         this.launcher = useService("foodflow_launcher");
         this.menuService = useService("menu");
-        this.ui = useState(useService("ui"));
-        this.state = useState({
+        this.ui = proxy(useService("ui"));
+        this.state = proxy({
             launcherOpen: this.launcher.isOpen,
         });
 
@@ -41,12 +40,10 @@ export class FoodflowMobileBar extends Component {
 
         useBus(this.env.bus, "FOODFLOW_LAUNCHER:CHANGED", syncBodyClass);
 
-        useEffect(
-            () => {
-                syncBodyClass();
-            },
-            () => [this.ui.isSmall, this.state.launcherOpen]
-        );
+        // Tracks ui.isSmall and state.launcherOpen.
+        useEffect(() => {
+            syncBodyClass();
+        });
     }
 
     get visible() {

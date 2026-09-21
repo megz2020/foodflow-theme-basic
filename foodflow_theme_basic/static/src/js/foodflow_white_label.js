@@ -3,11 +3,11 @@
 import { registry } from "@web/core/registry";
 import { session } from "@web/session";
 import { patch } from "@web/core/utils/patch";
-import { titleService } from "@web/core/browser/title_service";
+import { TitlePlugin } from "@web/core/browser/title_plugin";
 import { browser } from "@web/core/browser/browser";
 import { _t } from "@web/core/l10n/translation";
 import { resConfigEdition } from "@web/webclient/settings_form_view/widgets/res_config_edition";
-import { Component } from "@odoo/owl";
+import { Component, useProps } from "@odoo/owl";
 import { Setting } from "@web/views/form/setting/setting";
 import { standardWidgetProps } from "@web/views/widgets/standard_widget_props";
 
@@ -21,23 +21,14 @@ function foodflowUrl(key, fallback) {
     return session[key] || fallback;
 }
 
-patch(titleService, {
-    start() {
-        const service = super.start(...arguments);
-        if (!whiteLabelEnabled()) {
-            return service;
+patch(TitlePlugin.prototype, {
+    setup() {
+        super.setup(...arguments);
+        if (whiteLabelEnabled()) {
+            // Shown alone when no part is set, and as the first part otherwise.
+            this.defaultTitle = FOODFLOW_BRAND;
+            this.setParts({ brand: FOODFLOW_BRAND });
         }
-        const originalSetParts = service.setParts.bind(service);
-        service.setParts = (parts) => {
-            originalSetParts(parts);
-            if (!Object.keys(service.getParts()).length) {
-                document.title = FOODFLOW_BRAND;
-            } else if (document.title === "Odoo" || document.title.endsWith(" - Odoo")) {
-                document.title = document.title.replace(/\bOdoo\b/g, FOODFLOW_BRAND);
-            }
-        };
-        originalSetParts({ brand: FOODFLOW_BRAND });
-        return service;
     },
 });
 
@@ -45,6 +36,7 @@ if (whiteLabelEnabled()) {
     const menuRegistry = registry.category("user_menuitems");
     menuRegistry.remove("odoo_account");
     menuRegistry.remove("documentation");
+    menuRegistry.remove("support"); // Odoo 20 "Help" (odoo.com)
 
     const docsUrl = foodflowUrl("foodflow_docs_url", "https://foodflo.app");
     const websiteUrl = foodflowUrl("foodflow_website_url", "https://foodflo.app");
@@ -58,7 +50,11 @@ if (whiteLabelEnabled()) {
             type: "item",
             id: "foodflow_about",
             description: _t("About FoodFlow"),
-            callback: () => document.dispatchEvent(new CustomEvent("foodflow-open-details")),
+            // The details card lives in the launcher, which Enterprise doesn't use.
+            callback: () =>
+                session.foodflow_use_launcher
+                    ? document.dispatchEvent(new CustomEvent("foodflow-open-details"))
+                    : browser.open(websiteUrl, "_blank"),
             sequence: 5,
         }),
         { force: true }
@@ -113,7 +109,7 @@ if (whiteLabelEnabled()) {
     class FoodflowResConfigEdition extends Component {
         static template = "foodflow_theme.ResConfigEdition";
         static components = { Setting };
-        static props = { ...standardWidgetProps };
+        props = useProps({ ...standardWidgetProps });
 
         setup() {
             this.serverVersion = session.server_version;

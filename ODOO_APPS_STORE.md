@@ -1,6 +1,6 @@
 # Publish FoodFlow Theme Basic on Odoo Apps
 
-Public repo · free module · branches `17.0`, `18.0`, `19.0`.
+Public repo · free module · branches `17.0`, `18.0`, `19.0`, `20.0`.
 
 ## Repository layout (required)
 
@@ -23,6 +23,7 @@ foodflow-theme-basic/          ← git repo root
 | `17.0` | 17.0 | `17.0.1.0.0` |
 | `18.0` | 18.0 | `18.0.1.0.3` (default dev) |
 | `19.0` | 19.0 | `19.0.1.0.0` |
+| `20.0` | 20.0 | `20.0.1.0.0` |
 
 Create or refresh a version branch:
 
@@ -40,6 +41,7 @@ gh repo create foodflow/foodflow-theme-basic --public --source=. --remote=origin
 git push -u origin 18.0
 git push -u origin 17.0
 git push -u origin 19.0
+git push -u origin 20.0
 ```
 
 **Repo must be public** (no `online-odoo` collaborator needed for public repos).
@@ -55,6 +57,7 @@ git push -u origin 19.0
 | Odoo 17 | `ssh://git@github.com/foodflow/foodflow-theme-basic#17.0` |
 | Odoo 18 | `ssh://git@github.com/foodflow/foodflow-theme-basic#18.0` |
 | Odoo 19 | `ssh://git@github.com/foodflow/foodflow-theme-basic#19.0` |
+| Odoo 20 | `ssh://git@github.com/foodflow/foodflow-theme-basic#20.0` |
 
 4. Click **Validate** on each draft repository.
 5. Set module metadata on the store listing (category **Theme/Creative**, price **Free**, LGPL-3).
@@ -84,7 +87,7 @@ If the repo were private, grant GitHub user **`online-odoo`** read access on the
 
 ## After publish
 
-1. Install from Apps on a test database (17 / 18 / 19).
+1. Install from Apps on a test database (17 / 18 / 19 / 20).
 2. Bump manifest patch version on the matching branch for each release.
 3. Push branch → Odoo Apps re-syncs automatically.
 

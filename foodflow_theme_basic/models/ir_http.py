@@ -16,12 +16,24 @@ from ..constants import (
 class IrHttp(models.AbstractModel):
     _inherit = "ir.http"
 
+    def color_scheme(self):
+        # The FoodFlow palette is light-only; keep the dark bundle (Enterprise
+        # dark mode) from mixing dark surfaces with the theme's light text.
+        icp = self.env["ir.config_parameter"].sudo()
+        if icp.get_str(CONFIG_PARAM_ENABLED, "False") == "True":
+            return "light"
+        return super().color_scheme()
+
     def session_info(self):
         info = super().session_info()
         icp = self.env["ir.config_parameter"].sudo()
-        enabled = icp.get_param(CONFIG_PARAM_ENABLED, "False") == "True"
+        enabled = icp.get_str(CONFIG_PARAM_ENABLED, "False") == "True"
         info["foodflow_theme_enabled"] = enabled
-        info["foodflow_theme_preset"] = icp.get_param(CONFIG_PARAM_PRESET, PRESET_DEFAULT)
+        if enabled and isinstance(info.get("user_settings"), dict):
+            # Matches color_scheme(); Enterprise's color-scheme plugin
+            # would otherwise follow the OS dark mode and reload forever.
+            info["user_settings"] = {**info["user_settings"], "color_scheme": "light"}
+        info["foodflow_theme_preset"] = icp.get_str(CONFIG_PARAM_PRESET, PRESET_DEFAULT)
         lang = (info.get("user_context") or {}).get("lang") or ""
         info["foodflow_theme_rtl"] = lang.startswith("ar")
         has_enterprise = bool(

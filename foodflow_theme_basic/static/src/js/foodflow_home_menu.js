@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import { Component, onMounted, onWillUnmount, useEffect, useRef, useState } from "@odoo/owl";
+import { Component, onMounted, onWillUnmount, proxy, signal, useEffect } from "@odoo/owl";
 import { useBus, useService } from "@web/core/utils/hooks";
 import { session } from "@web/session";
 
@@ -93,12 +93,11 @@ function normalizeApp(app) {
 
 export class FoodflowHomeMenu extends Component {
     static template = "foodflow_theme.FoodflowHomeMenu";
-    static props = {};
+    searchInput = signal.ref();
 
     setup() {
         this.launcher = useService("foodflow_launcher");
         this.menuService = useService("menu");
-        this.searchInput = useRef("searchInput");
         this.categories = CATEGORIES;
         this.foodflowLogo = FOODFLOW_LOGO;
         this.foodflowMark = FOODFLOW_MARK;
@@ -108,7 +107,7 @@ export class FoodflowHomeMenu extends Component {
         this.foodflowDocsUrl = session.foodflow_docs_url || "https://foodflo.app";
         this.foodflowProUrl = session.foodflow_pro_url || "https://foodflo.app";
         this.foodflowHasConnector = Boolean(session.foodflow_has_connector);
-        this.state = useState({
+        this.state = proxy({
             isOpen: this.launcher.isOpen,
             search: this.launcher.search,
             category: this.launcher.category,
@@ -123,15 +122,15 @@ export class FoodflowHomeMenu extends Component {
         useBus(this.env.bus, "FOODFLOW_LAUNCHER:CHANGED", syncFromLauncher);
         useBus(this.env.bus, "FOODFLOW:OPEN_DETAILS", () => this.openFoodflowDetails());
 
-        useEffect(
-            () => {
-                if (this.state.isOpen && this.searchInput.el) {
-                    this.searchInput.el.focus();
-                }
-                document.body.classList.toggle("o_foodflow_launcher_open", this.state.isOpen);
-            },
-            () => [this.state.isOpen]
-        );
+        // Re-runs when the launcher opens/closes or the search input mounts.
+        useEffect(() => {
+            const isOpen = this.state.isOpen;
+            const input = this.searchInput();
+            if (isOpen && input) {
+                input.focus();
+            }
+            document.body.classList.toggle("o_foodflow_launcher_open", isOpen);
+        });
 
         onMounted(() => {
             syncFromLauncher();

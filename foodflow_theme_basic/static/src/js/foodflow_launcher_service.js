@@ -1,12 +1,12 @@
 /** @odoo-module **/
 
-import { reactive } from "@odoo/owl";
+import { proxy } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { session } from "@web/session";
 
 export const foodflowLauncherService = {
     start(env) {
-        const state = reactive({
+        const state = proxy({
             isOpen: false,
             search: "",
             category: "all",

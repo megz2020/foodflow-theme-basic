@@ -66,7 +66,7 @@ function injectPosPortalLink() {
     link.className = "btn btn-light btn-lg lh-lg foodflow-pos-portal-link";
     link.title = "Open FoodFlow dashboard";
     link.setAttribute("aria-label", "Open FoodFlow dashboard");
-    link.innerHTML = '<i class="fa fa-external-link fa-fw fa-lg"/>';
+    link.innerHTML = '<i class="oi" data-icon="open_in_new"/>';
     tray.insertBefore(link, tray.firstChild);
 }
 

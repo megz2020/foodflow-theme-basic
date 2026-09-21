@@ -31,11 +31,11 @@
                                 </ul>
                                 <div class="d-flex flex-wrap gap-2">
                                     <button name="action_open_foodflow_signup" type="object"
-                                            string="Start free trial" class="btn btn-primary" icon="fa-rocket"/>
+                                            string="Start free trial" class="btn btn-primary" icon="rocket_launch"/>
                                     <button name="action_open_foodflow_app" type="object"
-                                            string="Open FoodFlow" class="btn btn-secondary" icon="fa-external-link"/>
+                                            string="Open FoodFlow" class="btn btn-secondary" icon="open_in_new"/>
                                     <button name="action_open_foodflow_docs" type="object"
-                                            string="Documentation" class="btn btn-link" icon="fa-book"/>
+                                            string="Documentation" class="btn btn-link" icon="menu_book"/>
                                 </div>
                             </div>
                         </setting>
@@ -45,9 +45,9 @@
                                  help="POS v2 layout, channel pills, product cards, animations, and FoodFlow Connector dashboard — included with a FoodFlow subscription.">
                             <div class="d-flex flex-wrap gap-2 mt-2">
                                 <button name="action_open_foodflow_pro" type="object"
-                                        string="See Pro features" class="btn btn-primary" icon="fa-star"/>
+                                        string="See Pro features" class="btn btn-primary" icon="star"/>
                                 <button name="action_open_foodflow_signup" type="object"
-                                        string="Start FoodFlow trial" class="btn btn-secondary" icon="fa-user-plus"/>
+                                        string="Start FoodFlow trial" class="btn btn-secondary" icon="person_add"/>
                             </div>
                             <div class="mt-3">
                                 <field name="foodflow_pro_url" widget="url" readonly="1"/>
@@ -59,9 +59,9 @@
                                  help="Online orders, QR menu, WhatsApp bot, and loyalty — works with or without the Pro theme.">
                             <div class="d-flex flex-wrap gap-2 mt-2">
                                 <button name="action_open_foodflow_app" type="object"
-                                        string="Open FoodFlow" class="btn btn-primary" icon="fa-external-link"/>
+                                        string="Open FoodFlow" class="btn btn-primary" icon="open_in_new"/>
                                 <button name="action_open_foodflow_docs" type="object"
-                                        string="Docs" class="btn btn-link" icon="fa-book"/>
+                                        string="Docs" class="btn btn-link" icon="menu_book"/>
                             </div>
                             <div class="mt-3">
                                 <field name="foodflow_portal_url" widget="url" readonly="1"/>

@@ -18,6 +18,7 @@ Use one branch per Odoo major version — all are store-eligible:
 | `17.0` | 17.0 | `17.0.x.x` |
 | `18.0` | 18.0 | `18.0.x.x` (default dev) |
 | `19.0` | 19.0 | `19.0.x.x` |
+| `20.0` | 20.0 | `20.0.x.x` |
 
 ```bash
 ./scripts/prepare-odoo-branch.sh 18   # bump manifest for target Odoo
