@@ -14,9 +14,18 @@ export class FoodflowMobileBar extends Component {
         this.launcher = useService("foodflow_launcher");
         this.menuService = useService("menu");
         this.ui = proxy(useService("ui"));
+        // Enterprise only: its own home menu replaces the launcher there.
+        this.homeMenu = this.env.services.home_menu;
         this.state = proxy({
             launcherOpen: this.launcher.isOpen,
+            hasHomeMenu: Boolean(this.homeMenu?.hasHomeMenu),
+            appTick: 0,
         });
+        useBus(this.env.bus, "HOME-MENU:TOGGLED", () => {
+            this.state.hasHomeMenu = Boolean(this.homeMenu?.hasHomeMenu);
+        });
+        // The current app lives in the menu service, which isn't reactive.
+        useBus(this.env.bus, "MENUS:APP-CHANGED", () => this.state.appTick++);
 
         const syncLauncher = () => {
             this.state.launcherOpen = this.launcher.isOpen;
@@ -51,10 +60,14 @@ export class FoodflowMobileBar extends Component {
     }
 
     get homeActive() {
-        return this.state.launcherOpen;
+        return this.state.launcherOpen || this.state.hasHomeMenu;
     }
 
     get currentAppLabel() {
+        this.state.appTick; // re-render when the app changes
+        if (this.homeActive) {
+            return "FoodFlow";
+        }
         return this.menuService.getCurrentApp()?.name || "FoodFlow";
     }
 
@@ -78,12 +91,20 @@ export class FoodflowMobileBar extends Component {
             }
             return;
         }
+        if (this.homeMenu) {
+            // Same as Enterprise's own home toggle: home menu <-> last app.
+            this.homeMenu.toggle();
+            return;
+        }
         this._closeLauncherIfNeeded();
         this.env.bus.trigger("FOODFLOW:OPEN_MOBILE_SIDEBAR_ALL_APPS");
     }
 
-    openCurrentAppMenus() {
+    async openCurrentAppMenus() {
         this._closeLauncherIfNeeded();
+        if (this.state.hasHomeMenu) {
+            await this.homeMenu.toggle(false);
+        }
         this.env.bus.trigger("FOODFLOW:OPEN_MOBILE_SIDEBAR_APP");
     }
 

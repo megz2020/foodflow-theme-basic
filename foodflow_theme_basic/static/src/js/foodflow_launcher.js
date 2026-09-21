@@ -3,6 +3,7 @@
 import { WebClient } from "@web/webclient/webclient";
 import { NavBar } from "@web/webclient/navbar/navbar";
 import { patch } from "@web/core/utils/patch";
+import { registry } from "@web/core/registry";
 import { useBus } from "@web/core/utils/hooks";
 import { useCommand } from "@web/core/commands/command_hook";
 import { _t } from "@web/core/l10n/translation";
@@ -12,9 +13,10 @@ import { FoodflowMobileBar } from "./foodflow_mobile_bar";
 
 import "./foodflow_launcher_service";
 
-patch(WebClient, {
-    components: { ...WebClient.components, FoodflowHomeMenu, FoodflowMobileBar },
-});
+// Fixed-position overlays: mounting them as main components keeps them
+// independent of WebClient subclasses (Enterprise copies WebClient.components).
+registry.category("main_components").add("foodflow_home_menu", { Component: FoodflowHomeMenu });
+registry.category("main_components").add("foodflow_mobile_bar", { Component: FoodflowMobileBar });
 
 patch(WebClient.prototype, {
     async _loadDefaultApp() {

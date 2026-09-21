@@ -3,7 +3,7 @@
 import { session } from "@web/session";
 
 const LOGO_SRC = "/foodflow_theme_basic/static/img/foodflow-logo.jpg";
-const FOODFLOW_APP_URL = "https://foodflo.app";
+const FOODFLOW_APP_URL = session.foodflow_app_url || "https://foodflo.app/login";
 const BRAND_TITLE = "FoodFlow";
 
 function brandEnabled() {
