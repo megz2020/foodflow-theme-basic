@@ -13,7 +13,7 @@
         <xpath expr="//a[contains(@href, 'odoo.com') and contains(., 'Powered')]" position="replace">
             <t t-set="ff_theme_on" t-value="request.env['ir.config_parameter'].sudo().get_param('foodflow_theme_basic.enabled') == 'True'"/>
             <a t-if="ff_theme_on"
-               href="https://foodflo.app"
+               href="https://foodflo.app/?utm_source=odoo_apps&amp;utm_medium=theme_basic&amp;utm_campaign=odoo_theme&amp;utm_content=login_page"
                target="_blank"
                rel="noopener noreferrer">Powered by <span>FoodFlow</span></a>
             <a t-else=""
@@ -28,7 +28,7 @@
             <t t-set="odoo_logo">
                 <a t-if="ff_theme_on"
                    target="_blank"
-                   href="https://foodflo.app"
+                   href="https://foodflo.app/?utm_source=odoo_apps&amp;utm_medium=theme_basic&amp;utm_campaign=odoo_theme&amp;utm_content=powered_by"
                    class="badge text-bg-light text-decoration-none">
                     <strong>FoodFlow</strong>
                 </a>

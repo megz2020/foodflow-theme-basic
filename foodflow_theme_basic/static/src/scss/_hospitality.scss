@@ -37,7 +37,9 @@ body.o_foodflow_theme .o_main_navbar .o_navbar_apps_menu button,
 body.o_foodflow_theme .o_main_navbar .o_menu_sections .o_nav_entry,
 body.o_foodflow_theme .o_main_navbar .o_menu_sections .dropdown-toggle,
 body.o_foodflow_theme .o_main_navbar .dropdown-toggle,
-body.o_foodflow_theme .o_main_navbar .o_nav_entry {
+body.o_foodflow_theme .o_main_navbar .o_nav_entry,
+body.o_foodflow_theme .o_main_navbar .o_breadcrumb,
+body.o_foodflow_theme .o_main_navbar .o_breadcrumb a {
     color: #fff !important;
     font-weight: 500;
 }
