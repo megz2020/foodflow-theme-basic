@@ -140,7 +140,7 @@
                                 </button>
                             </div>
                         </t>
-                        <t t-else="">
+                        <t t-elif="!hasApps">
                             <div class="foodflow-launcher__empty">
                                 <p>No apps installed yet.</p>
                             </div>
@@ -158,15 +158,6 @@
                 </div>
             </div>
         </t>
-    </t>
-
-    <t t-inherit="web.WebClient" t-inherit-mode="extension">
-        <xpath expr="//ActionContainer" position="before">
-            <FoodflowHomeMenu/>
-        </xpath>
-        <xpath expr="//ActionContainer" position="after">
-            <FoodflowMobileBar/>
-        </xpath>
     </t>
 
     <t t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension">

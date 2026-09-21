@@ -68,6 +68,8 @@ Use git branch `17.0`, `18.0`, or `19.0` matching your Odoo install.
         "static/description/icon.png",
         "static/description/screenshots/backend.png",
         "static/description/screenshots/mobile.png",
+        "static/description/screenshots/basic-login.png",
+        "static/description/screenshots/basic-foodflow.png",
     ],
     "installable": True,
     "auto_install": False,

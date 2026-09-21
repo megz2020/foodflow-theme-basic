@@ -50,7 +50,7 @@
                                         string="Start FoodFlow trial" class="btn btn-secondary" icon="fa-user-plus"/>
                             </div>
                             <div class="mt-3">
-                                <field name="foodflow_pro_url" widget="url" readonly="1"/>
+                                <field name="foodflow_pro_url" widget="url" readonly="1" text="foodflo.app/#pricing"/>
                             </div>
                         </setting>
                     </block>
@@ -64,7 +64,7 @@
                                         string="Docs" class="btn btn-link" icon="fa-book"/>
                             </div>
                             <div class="mt-3">
-                                <field name="foodflow_portal_url" widget="url" readonly="1"/>
+                                <field name="foodflow_portal_url" widget="url" readonly="1" text="foodflo.app/login"/>
                             </div>
                         </setting>
                     </block>

@@ -46,6 +46,7 @@ body.o_foodflow_theme .oe_login_form,
     border: 1px solid rgba(42, 33, 28, 0.05);
 }
 
+.foodflow-login-wrap .oe_login_form .btn-primary,
 .o_login_form .btn-primary {
     background: linear-gradient(180deg, $ff-brand-light 0%, $ff-brand 100%) !important;
     border-color: $ff-brand-dark !important;
@@ -54,14 +55,22 @@ body.o_foodflow_theme .oe_login_form,
     padding: 0.6rem 1rem;
 }
 
+.foodflow-login-wrap .oe_login_form input.form-control,
 .o_login_form input.form-control {
     border-radius: $ff-radius-sm;
     border-color: rgba(42, 33, 28, 0.15);
 }
 
+.foodflow-login-wrap .oe_login_form input.form-control:focus,
 .o_login_form input.form-control:focus {
     border-color: $ff-brand;
     box-shadow: 0 0 0 3px rgba(214, 58, 50, 0.15);
+}
+
+.foodflow-login-wrap .oe_login_form a,
+.foodflow-login-wrap .o_login_auth a,
+.foodflow-login-wrap .card-body .btn-link {
+    color: $ff-brand-dark !important;
 }
 
 @media (max-width: 767.98px) {
