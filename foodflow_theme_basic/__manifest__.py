@@ -67,6 +67,7 @@ Use git branch `17.0`, `18.0`, `19.0` or `20.0` matching your Odoo install.
     "images": [
         "static/description/banner.png",
         "static/description/icon.png",
+        "static/description/cta-foodflow.png",
         "static/description/screenshots/backend.png",
         "static/description/screenshots/mobile.png",
         "static/description/screenshots/basic-login.png",
